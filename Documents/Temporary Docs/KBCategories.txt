@@ -1,0 +1,111 @@
+SHOP BY CATEGORY-
+
+Fruits:
+	Apples, Bananas & Pears
+		Apples
+		Banana
+		Pear
+	Berries
+		Strawberry
+		Blueberry		
+		Cherry
+		Raspberry
+	Citrus Fruits
+		Orange
+		Lemon
+		Mosambi
+		Kiwi
+	Grapes, Chickoo and Pomegranate
+		Grape
+		Chickoo
+		Pomegranate
+	Mangoes
+	Melons
+		Watermelon
+		Muskmelon
+		Sunmelon
+	Plums, Peaches, Figs & Apricots
+		Plum
+		Peach
+		Fig
+		Apricot
+	Dry Fruits & Dry Seeds
+	Other Fruits
+
+
+Daily Vegetables:
+	Onions, Potatoes & Tomatoes
+		Onion
+		Potato
+		Tomato
+	Beans, Brinjals & Okra
+		Beans
+		Brinjal
+		Okra
+	Broccoli, Cabbage & Cauliflower
+		Broccoli
+		Cabbage
+		Cauliflower
+	Gourd, Pumpkin & Drumstick
+		Bitter Gourd - Karela
+		Ridge Gourd - Dodka
+		Bottle Gourd - Lauki
+		Snake Gourd - Parwal
+		Tinda
+		Pumpkin
+		Drumstick
+	Chilies, Garlic, Lemon & Ginger
+		Chilly
+		Garlic
+		Lemon
+		Ginger
+	Cucumber & Capsicum
+		Cucumber
+		Capsicum - Red
+		Capsicum - Yellow
+		Capsicum - Green
+	Peas & Corn
+		Peas
+		Corn
+	Root Vegetables
+	Other Daily Vegetables
+
+Exotic Vegetables:	
+	Avocados & Peppers
+		Avocado
+		Pepper
+	Broccoli & Zucchini
+		Broccoli
+		Zucchini
+	Asparagus & Artichokes
+		Asparagus
+		Artichoke
+	Celery, Fennel & Leeks
+		Celery
+		Fennel
+		Leek
+	Edible Flowers
+	Lettuce & Leafy Vegetables
+	Mushrooms
+	Other Exotic Vegetables
+
+Organic:
+	Organic Fruits
+	Organic Vegetables
+		
+Exotic: 
+	Exotic Fruits
+	Exotic Vegetables
+
+
+Herbs and Seasoning:
+	Lemon, Ginger & Garlic
+		Lemon
+		Ginger
+		Garlic
+	Indian Herbs
+	Other Herbs and Seasoning
+	
+
+SORT BY
+FILTER BY

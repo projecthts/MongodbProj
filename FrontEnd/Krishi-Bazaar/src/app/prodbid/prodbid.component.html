@@ -1,0 +1,49 @@
+<ng-template #t let-fill="fill">
+    <span class="star" [class.full]="fill === 100">
+        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+    </span>
+</ng-template>
+
+<div class="main">
+    <br>
+    <br>
+    <div class = "prodcard">
+        <div class = "prodimage">
+            <img src = "{{item.image}}" style = "width: 100%; height: 100%;">
+        </div>
+        <div class = "prodinfo">
+            <div style="font-size: 200%; font-weight: bold;">{{item.title}}</div>
+            <div>{{item.description}}</div>
+            <ngb-rating [rate]="item.rating" [readonly]="true" [max]="5" [starTemplate]="t"></ngb-rating>
+        </div>
+    </div>
+    <div class = "bidinput" *ngIf = "!permission">
+        <input type="number" class="ip" [(ngModel)]="bidCost" placeholder="price">
+            <input type="number" class="ip" [(ngModel)]="bidQty" placeholder="quantity">
+            <button (click)="postBid()" class = "kbbutton">Bid</button>
+    </div>
+    <div class = "bids">
+        <div style="margin: 1%; font-size: 150%; font-weight: bolder;">Bids</div>
+        <div class = "bid" *ngFor = "let bid of bids">
+            <div class = "bidcol">
+                Name: {{bid.name}}
+            </div>
+            <div class = "bidcol">
+                Price: Rs.{{bid.cost}}
+            </div>
+            <div class = "bidcol">
+                Quantity: {{bid.quantity}}Kgs
+            </div>
+            
+            <div class = "bidcol" *ngIf = "permission && bid.status != 'Accepted'">
+                <button (click)="acceptBid(bid)">Accept</button>
+            </div>
+            <div class = "bidcol" *ngIf = "bid.status == 'Accepted'">
+                Accepted
+            </div>
+            <div class = "bidcol" *ngIf = "!permission && bid.status == 'Not Accepted'">
+                Not Yet Accepted
+            </div>
+        </div>
+    </div>
+</div>

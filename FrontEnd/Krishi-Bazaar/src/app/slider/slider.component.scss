@@ -1,0 +1,99 @@
+.slidermain{
+    max-width: 100%;
+    height: 40vh;
+    display: flex;
+}
+
+.sliderleft, .sliderright{
+    flex-basis: 5%;
+    //background-color: aquamarine;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 200%;
+    cursor: pointer;
+}
+
+.sliderleft:hover, .sliderright:hover{
+    background-color: var(--col4);
+    color: white;
+}
+
+.sliderlist{
+    max-width: 80vw;
+    flex-basis: 90%;
+    display: flex;
+    align-items: center;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-snap-points-x: repeat(70vw);
+    scroll-behavior: smooth;
+}
+
+.slideritemcont{
+    display: flex;
+    //justify-content: space-evenly;
+    min-height: min-content;
+    // scroll-snap-align: center;
+}
+
+.slideritem, .slideritemprod{
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.slideritem{
+    width: 20vw;
+}
+
+.slideritemprod{
+    max-width: 20vw;
+    margin: 0 2%;
+}
+
+.slideritem:hover, .slideritemprod:hover{
+    background-color: rgb(245, 245, 245);
+}
+.slideritemimage{
+    align-self: center;
+    min-height: 20vh;
+    min-width: 20vh;
+    max-height: 20vh;
+    max-width: 20vh;
+    // flex-basis: 90%;
+    background-size: 100% 100%;
+}
+
+.slideritemtext{
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 200%;
+    display: flex;
+    flex-direction: column;
+}
+
+.slideritemtextprod{
+    font-size: 150%;
+}
+
+.star {
+    position: relative;
+    display: inline-block;
+    font-size: 80%;
+    color: #d3d3d3;
+}
+.full {
+    //color: var(--col4);
+    color: rgb(255,215,0)
+}
+.half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    //color: var(--col4);
+    color: rgb(255,215,0)
+}

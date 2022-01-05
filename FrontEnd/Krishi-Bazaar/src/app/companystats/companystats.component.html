@@ -1,0 +1,38 @@
+<div class="main">
+    <h1 style="text-align: center; padding: 2%;">
+        <i class="fa fa-university"></i>Company Statistics
+    </h1>
+    <div class="stats-2">
+        
+        <div class="chart-2">
+            <h1 style="color:#000;">Orders Fulfilled State-wise</h1>
+            <canvas baseChart [data]="doughnutChartData_f" [labels]="doughnutChartLabels_f"
+                [chartType]="doughnutChartType_f" [colors]="doughnutChartColor">
+            </canvas>
+        </div>
+
+
+        <div class="chart-2">
+            <h1 style="color:#000;">Sales obtained State-wise</h1>
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                [legend]="barChartLegend" [chartType]="barChartType">
+            </canvas>
+        </div>
+
+
+        <div class="chart-2">
+            <h1 style="color:#000;">Orders fullfilled Monthly</h1>
+            <canvas baseChart [data]="polarAreaChartData" [labels]="polarAreaChartLabels" [legend]="polarAreaLegend"
+                [chartType]="polarAreaChartType" [colors]="polarChartColor">
+            </canvas>
+        </div>
+
+        <div class="chart-2">
+            <h1 style="color:#000;">Your Monthly Sales</h1>
+            <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [colors]="doughnutChartColor">
+            </canvas>
+        </div>
+
+    </div>
+
+</div>

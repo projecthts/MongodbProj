@@ -1,0 +1,33 @@
+<ng-template #t let-fill="fill">
+    <span class="star" [class.full]="fill === 100">
+        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+    </span>
+</ng-template>
+<div class="slidermain">
+    <div class="sliderleft" (click) = "scrollleft()">
+        <
+    </div>
+    <div class="sliderlist" style="position: relative;" id = {{id}}>
+        <div class="slideritemcont">
+            <div *ngFor="let x of products" [ngClass]="{
+                'slideritemprod': type == 'prod',
+                'slideritem': type == 'cat'
+            }" (click)="type == 'cat' ? navigate(x.link) : navigateprod(x.link)">
+                    <div class="slideritemimage" style="background-image: url('{{x.image}}');">
+                    </div>
+                    <div class="slideritemtext" *ngIf = "type == 'cat'" style="color: black;">
+                        <div style="margin: 2%;">{{x.name}}</div>
+                    </div>
+                    <div class="slideritemtext slideritemtextprod" *ngIf = "type == 'prod'" style="color: black; align-items: center;">
+                        <div style="margin: 2%;">{{x.name}}</div>
+                        <div style="margin: 2%; font-size: 80%; color: blue;">₹{{x.product.baseprice}} per kg</div>
+                        <ngb-rating style="margin: 2%;" [rate]="x.product.rating" [readonly]="true" [max]="5" [starTemplate]="t"></ngb-rating>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sliderright" (click)="scrollright()">
+        >
+    </div>
+</div>

@@ -1,0 +1,98 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0",
+    "title": "TODO my swagger api",
+    "description": "TODO my description",
+    "termsOfService": "http://todo.com/terms",
+    "contact": {
+      "name": "todo",
+      "email": "todo@gmail.com",
+      "url": "http://todo.com"
+    },
+    "license": {
+      "name": "todo",
+      "url": "http://todo.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost"
+    }
+  ],
+  "paths": {
+    "/location": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          }
+        },
+        "requestBody": {
+          "description": "TODO",
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {},
+                "type": "object",
+                "required": [],
+                "properties": {}
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/message": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          }
+        },
+        "requestBody": {
+          "description": "TODO",
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {},
+                "type": "object",
+                "required": [],
+                "properties": {}
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/authenticate": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          }
+        },
+        "requestBody": {
+          "description": "TODO",
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {},
+                "type": "object",
+                "required": [],
+                "properties": {}
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    }
+  },
+  "components": {}
+}

@@ -1,0 +1,138 @@
+<div class="common_main">
+    <mat-sidenav-container style="background-color: rgba(0, 0, 0, 0);">
+        <mat-sidenav #sidenav mode="over" [(opened)]="opened" class="nav-drawer">
+            <div class="nav-drawer-hamburger" (click)="sidenav.toggle();">
+                <i class="fa fa-bars"></i>
+            </div>
+            <div class="greeting" (swipeleft)="sidenav.toggle();">
+                <i class="fa fa-user menuicon"
+                    style="width: 100%; text-align: center; display: flex; flex-direction: column; justify-content: center; font-size: 200%;"></i>
+                <div class="user">Welcome <br>{{ userEmail }} </div>
+            </div>
+            <div class="nav-drawer-items" (swipeleft)="sidenav.toggle();">
+                <div *ngFor="let i of navdrawerdata">
+                    <a class="nav-drawer-item" *ngIf="!(url == '/signin' && i.name !='Home') && selectedRole == i.role"
+                        routerLink={{i.link}} (click)="i.func()">
+                        <i class={{i.class}}
+                            style="flex-basis: 45%; text-align: center; display: flex; flex-direction: column; justify-content: center;"></i>
+                        <div class="nav-drawer-item-text">{{i.name}} &#8594;</div>
+                    </a>
+                </div>
+            </div>
+            <!-- </div>  -->
+        </mat-sidenav>
+
+        <mat-sidenav-content class="content">
+
+            <div class="nav-bar">
+                <div class="nav-bar-left">
+                    <div class="nav-bar-hamburger" (click)="sidenav.toggle()">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                    <div class="siteinfo">
+                        <div class="siteimage">
+                            <img src="../assets/images/logo3.png" style="height: 100%; width: 100%;">
+                        </div>
+                        <a class="sitename"
+                            *ngIf="selectedRole == 'consumer' || selectedRole == 'consumeronly' || selectedRole == 'newuser' "
+                            routerLink="/home">
+                            Krishi Bazaar
+                        </a>
+                        <a class="sitename" *ngIf="selectedRole == 'farmer'" routerLink="/home/farmer">
+                            Krishi Bazaar
+                        </a>
+                    </div>
+
+                </div>
+                <div class="nav-bar-search" *ngIf = "!(url == '/signin')">
+                    <div *ngIf="words && search"
+                        style="position: absolute; top: 6vh; left: 0; height: 100vh; width: 100vw; background-color: rgba(0, 0, 0, 0.5); z-index: -1;">
+                    </div>
+                    <form style="z-index: 1; width: 50%; height: 100%;">
+                        <mat-form-field style="z-index: 1; width: 100%; height: 100%; border: none;">
+                            <input type="text" matInput [formControl]="word" placeholder="Search..."
+                                [matAutocomplete]="auto" class="search" id="search-dd">
+                                <!-- (optionSelected)='try($event.option.value)' -->
+                            <mat-autocomplete #auto="matAutocomplete" >
+                                <mat-option *ngFor="let x of words" [value]="x.displayname" (click) = "searchsub(x.category)">
+                                   {{x.displayname}}<span style="font-size: 70%; color: grey; margin: 10px;">From {{x.category}}</span>
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                        <!-- <input class="search" type="text" formControlName="word"> -->
+                    </form>
+                    <i class="fa fa-search search-icon" aria-hidden="true" style="margin-left: 2%; cursor: pointer; padding: 1%;" (click) = "searchsub()"></i>
+                    <!-- <div style = "background-color: white; width: 100%; max-height: 5vh; overflow: auto; z-index: 1;">
+                        <div *ngFor = "let x of words">
+                            {{x.word}}
+                        </div>
+                    </div> -->
+
+                </div>
+                <div class="nav-bar-right">
+                    <div *ngFor="let y of navdata" [ngClass]="{
+                        'visi': selectedRole == y.role,
+                        'nvisi': !(selectedRole == y.role)
+                    }">
+
+                        <a class="nav-bar-item" *ngIf="!(url == '/signin' && y.name !='Shop') && selectedRole == y.role"
+                            routerLink={{y.link}}><i class={{y.class}}
+                                style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px; font-size: 150%;"></i>
+                            <div class="nav-bar-item-text">{{y.name}}</div>
+                            <div *ngIf="y.name == 'Cart'"
+                                style="position: absolute; top: -25%; right: -5%; background-color: var(--col4); border-radius: 50%; width: 0.8vw; color: white; text-align: center;">
+                                {{cart}}</div>
+                        </a>
+                    </div>
+
+
+                    <div *ngIf="show">
+                        <mat-form-field style="width: 7vw;">
+                            <mat-label style="font-size: 80%; color: black;">Select Role</mat-label>
+                            <mat-select [(value)]="selectedRole"
+                                style="text-align: center; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+                                <mat-option value="farmer" (click)="changeroletofarmer()">
+                                    farmer</mat-option>
+                                <mat-option value="consumer" (click)="changeroletoconsumer()">
+                                    consumer</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; justify-content: center;"
+                        *ngIf="url != '/signin'">
+                        <i class="fa fa-user"
+                            style="border-radius: 50%; border: solid black thin; width: 4vh; text-align: center; cursor: pointer; font-size: 4vh; height: 4vh;"
+                            (click)="tryuser()" id="ui"></i>
+
+                        <div *ngIf="toggle" class="userdropdown" id="udd">
+                            <div *ngFor="let x of this.dropdown">
+                                <a class="dd-item" *ngIf="selectedRole == x.role">
+                                    <i class={{x.class}}
+                                        style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px;">
+                                    </i>
+                                    <div class="nav-bar-item-text" routerLink={{x.link}} (click)="x.func()">{{x.name}}
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="mainpage" (swipeleft)="sidenav.close()" (swiperight)="sidenav.open()">
+                <div class="mainpagecont">
+                    <router-outlet></router-outlet>
+                </div>
+                <!-- <app-footer></app-fosoter> -->
+            </div>
+
+
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+    <ng-particles class="particles" [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"
+        (particlesInit)="particlesInit($event)">
+    </ng-particles>
+</div>

@@ -1,0 +1,75 @@
+Databases:-
+
+//UserData:
+uid
+email - connect with uid collection
+role
+name
+phone
+address
+district
+state
+
+//Account:
+uid
+email
+pwd
+
+//Categories:
+connect each sub category with product
+
+//Farmer:
+uid
+prodId (array)
+rating
+
+//Shipment:
+uid (of farmer)
+itemList - array of itemids
+
+
+//Product:
+prodId
+uid - farmer
+description
+title
+productRemaining
+-image
+costing - array of {price, quantity}
+rating 
+no. of users that have given rating
+comments - array of comments {uid, content}
+
+
+//Carts:
+uid
+itemsList -array of json object {product id and quantity}
+
+
+//Orders:{
+	{
+
+		uid: 18928390
+		orders:[
+				{
+					OrderId: uid+?+date(hh:mm:ss)
+					Date:
+					Items: [{Itemid: uid + OrderId + arrayno, ProductId:...., Price: ...., Quantity: ....., track: ....}]
+				} ,
+
+				{
+					multiple orders....
+				}	
+			
+
+			]
+
+
+	} ,
+
+	{
+		multiple farmers....
+	}
+}
+
+

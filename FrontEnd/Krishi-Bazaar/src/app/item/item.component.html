@@ -1,0 +1,160 @@
+<ng-template #t let-fill="fill">
+    <span class="star" [class.full]="fill === 100">
+        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+    </span>
+</ng-template>
+
+
+<div class="main" *ngIf="!error500">
+    <div class="itemmain">
+        <div class="itempic">
+            <img class="pic" src="{{item.image}}">
+        </div>
+        <div class="itemdesc">
+            <div class="headinfo">
+                <div class="itemtitle">
+                    {{item.title}}
+
+                </div>
+                <div class="baseprice">
+                    ₹{{item.baseprice}} per kg
+                </div>
+                <div class="itemrating">
+                    <div class="rating">
+                        <ngb-rating [rate]="item.rating" [readonly]="true" [max]="5" [starTemplate]="t"></ngb-rating>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bodyinfo">
+                <div class="itemdescbody">
+                    <div class="itemdesccont">
+                        {{item.description}}
+                    </div>
+                    <div class="itemdesccont seller">
+                        Sold By {{item.sellername}}
+                    </div>
+
+                    <div class="itemdesccont seller" style="font-size: 15px;">
+                        Estimated Delivery in 6-7 working days.
+                    </div>
+                    <!-- <div class="itemcosting">
+                        <div class="itemcosttitle">
+                            Price:
+                        </div>
+                        <div class="prices">
+                            <div class="price" *ngFor="x of number">
+                                Rs 34 per kg upto 7 Kgs
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+            
+            <div class="buyitemcont">
+                <div class="buyitembody">
+                    <div class="itemmarking">
+                        <div class="marking">
+                            Quantity
+                        </div>
+                        <div class="marking">
+                            Discount
+                        </div>
+                        <div class="marking">
+                            Total
+                        </div>
+                    </div>
+                    <div class="itembody">
+                        <div class="itempart quantity">
+                            <div class="quantitybutton qb1" (click)="subQty()">
+                                -
+                            </div>
+
+                            <div class="quantitybutton">
+                                {{qty}}
+                            </div>
+
+                            <div class="quantitybutton qb1" (click)="addQty()">
+                                +
+                            </div>
+                        </div>
+                        <div class="itempart" style="color: blue;">
+                            ₹{{discount}}
+                        </div>
+                        <div class="itempart">
+                            ₹{{calcTotalCost()}}
+                        </div>
+                    </div>
+                    <!-- <form [formGroup]="form" class="buyitem-part p1">
+                        Quantity:
+                        <input placeholder="Quantity in Kgs" formControlName="quantity" type="number" class="ip">
+                    </form>
+                    <div class="buyitem-part p2">
+                        Total : {{calcTotalCost()}}
+                    </div> -->
+                </div>
+                <div class="addtocart" style="margin-top: 5px;">
+                    <button class="addtocartbutton" (click)=addToCart(data)>
+                        Add to cart
+                    </button>
+                </div>
+
+                <!-- <div style = "width: 100%; display: flex; margin-top: 30px;">
+                    <input type="number" class="ip" placeholder="price" [(ngModel)]="bidCost">
+                    <input type="number" class="ip" placeholder="quantity" [(ngModel)]="bidQty">
+                </div> -->
+                
+                <div class="addtocart" style="margin-top: 5px;">
+                    <button class="addtocartbutton" (click)=gotoItemBid()>
+                        Add a bid
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="comments">
+        <div class="commenttitle">
+            Reviews:
+        </div>
+        <div *ngIf="ratingpermission" style="margin-top: 10px;">
+            <u>Edit Your Review-</u>
+            <br>
+            {{userdate}}
+            <div class="rating">
+                Rate Product:
+                <ngb-rating [(rate)]="userrate" [max]="5" [starTemplate]="t"></ngb-rating>
+            </div>
+            <div class="addcomment">
+                <textarea placeholder="Write your comments" type="number" class="ip review"
+                    [(ngModel)]="usercomment"></textarea>
+                <button class="addtocartbutton reviewsubmit" (click)=submitReview() style="margin-top: 5px;">Submit</button>
+            </div>
+        </div>
+
+        <div class="comment" *ngFor="let x of item.comments">
+            <div class="commentcontentcont">
+                <i class="fa fa-user commentusericon">
+                </i>
+                <div class="commentuserbody">
+                    <div class="commentusername">
+                        {{x.email}} <span>
+                            <ngb-rating [rate]="x.rating" [readonly]="true" [max]="5" [starTemplate]="t"></ngb-rating>
+                        </span>
+                        <p style="text-align:right;">{{x.date| date:'mediumDate'}}</p>
+                    </div>
+                    <div class="commentcontent">
+                        {{x.content}}
+                    </div>
+
+                </div>
+            </div>
+            <div class="commentstat">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-error500 *ngIf="error500"></app-error500>

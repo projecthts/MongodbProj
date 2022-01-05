@@ -1,0 +1,76 @@
+.main {
+  min-height: calc(94vh - 39px);
+  overflow: hidden;
+  width: 80vw;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.heading{
+  width: 100%;
+  height: 10vh;
+  align-items: center;
+  font-size: 200%;
+  // text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.pickuptables{
+  background-color: white;
+  width: 80vw;
+}
+
+.rowbreak {
+  height: 1vh;
+  // background-color:  var(--appbg);
+}
+
+.vsdCard{
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+}
+
+// .heading {
+
+// }
+
+// .content {
+
+// }
+
+
+@media(max-width:1200px){
+  .main {
+    min-height: calc(94vh - 39px);
+    overflow: hidden;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  }
+  
+  .heading{
+    width: 100%;
+    height: 10vh;
+    align-items: center;
+    font-size: 200%;
+    // text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  
+  }
+  
+  .rowbreak {
+    height: 1vh;
+    background-color:  var(--appbg);
+  }
+  
+  .vsdCard{
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+  }
+}

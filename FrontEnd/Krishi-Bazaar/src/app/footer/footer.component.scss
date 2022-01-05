@@ -1,0 +1,209 @@
+*{
+    color: black;
+    
+}
+
+.info{
+    backdrop-filter: blur(6px);
+    height: 20vh;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    // background-color: #1da1f2;
+    //width: 99vw;
+}
+
+.siteinfo{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 10vh;
+    color: white;
+    font-size: 150%;
+}
+
+.devinfo{
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.dev{
+    flex-basis: 30%;
+    display: flex;
+    justify-content: center;
+}
+
+.photo{
+    //flex-basis: 50%;
+    width: 10vh;
+    margin-right: 5%;
+    background-color: #c32aa3;
+    background-size: 100% 100%;
+}
+
+.nameandemail{
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    padding: 2%;
+    font-size: 150%;
+}
+
+.ne{
+    flex-basis: 50%;
+}
+.container{
+    width: 80%;
+    margin: 2rem auto;
+    p{
+        margin: 1rem 0;
+    }
+}  
+#coverVideo {
+    height:35vh;
+    width:100vw;
+     //border: solid blue;
+     background-color: var(--col4);
+    position:absolute;
+    top:0;
+   display:flex;
+   justify-content:center;
+   align-items:center;
+   overflow:hidden;
+
+#contentVideo {object-fit: cover;	//flex:0;
+   min-height:100%;
+   min-width:100%;
+   
+   
+   //&:hover{
+     //  -webkit-filter: blur(1px);
+     //  -moz-filter: blur(15px);
+      // -o-filter: blur(15px);
+      // -ms-filter: blur(15px);
+       filter: blur(2.5px);
+   //}
+ }
+}
+//position:relative; 
+     
+video {
+    position:relative;
+    z-index:0;
+    
+    
+    
+}
+//.overlay{
+    //backdrop-filter: blur(6px);
+    
+//}
+.overlay {
+  
+    //position:absolute;
+    //top:0;
+    //left:0;
+    //bottom: 0;
+    //background-color: #6cc644;
+    z-index:1;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    //height:50vh;
+    //position: absolute;
+  //top: 50%;
+  //left: 50%;
+
+}
+
+.footer{
+    display: flex;
+    flex-direction: column;
+}
+footer {
+    backdrop-filter: blur(6px);
+
+    //position: absolute;
+ // bottom:-100%;
+ //top:1vh;
+
+   // height: 5vh;
+    //width: 100%;
+    background: transparent;
+    //bottom: 0;
+    height: 5vh;
+    // width: 99vw;
+    height: 1vh;
+    border: 0;
+    color: white;
+    box-shadow: 0 9px 9px -9px #adaaaa inset;
+    // hr{z-index: 3;
+    //     height: 1vh;
+    //     border: 0;
+    //     color: white;
+    //     box-shadow: 0 9px 9px -9px #adaaaa inset;
+
+    // }
+}
+p.copyright {
+
+  //  position: relative;
+  // width: 99vw;
+   bottom: 0px;
+   top:0;
+   color: rgb(247, 245, 245);
+   line-height: 40px;
+  font-size: 1.2em;
+ text-align:center;
+    bottom:0;
+
+    //-webkit-text-decoration-line: overline;
+}
+
+.fa{
+    color: white;
+}
+.fa-linkedin-in:hover,.fa-linkedin-in:after{
+    color: #327acc;
+    transition: 0.5s;
+    transform: rotateY(360deg);
+}
+.fa-github:hover{
+    color:#6cc644;
+    transition: 0.5s;
+    transform: rotate(360deg);
+}
+.fa-twitter:hover{
+    color:#1da1f2;;
+    box-shadow: black;
+    transition: 0.5s;
+    transform: rotateX(360deg);
+}
+.fa-medium:hover{
+    color:#02b875;
+    transition: 0.5s;
+    transform: rotate(360deg);
+}
+.fa-discord:hover{
+    color:#7289da;
+    transition: 0.5s;
+    transform: rotate(360deg);
+}
+.fa-instagram:hover{
+    color:#c32aa3;
+    transition: 0.5s;
+    transform: rotate(360deg);
+}
+
+.links-social{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+    height: 10vh;
+    font-size: 250%;
+}

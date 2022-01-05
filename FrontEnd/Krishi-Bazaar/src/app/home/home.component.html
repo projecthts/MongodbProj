@@ -1,0 +1,32 @@
+<div class="main">
+
+    <div class = "about">
+        <div class = "info">
+            <div>
+                Krishi Bazaar is a <span class = "p1">Kirshi Kalyan initiative</span> that will help and able <span class = "p2">farmers</span> set up a <span class = "p3">brand</span> and reach a <span class = "p4">global market</span><br>
+                Get <span class = "p5">fresh groceries</span> to your doorstep, which are <span class = "p6">affordable</span> and <span class = "p6">authentic.</span><br>
+                 Krishi Bazaar is dedicated to serving <span class = "p7">Yummy and Healthy</span> products straight from the farm.
+            </div>
+            <button class = "kbbutton" style = "width: 30%; font-size: 100%;" routerLink="/items">Shop Now</button>
+        </div>
+        <ngb-carousel class="advertisement_cont" [interval]="4000">
+
+            <ng-template ngbSlide class="mySlides" *ngFor="let x of sliderdata">
+                <div class="slidesimg" style="background-image: url('{{x}}'); background-size: 100% 100%;">
+    
+                </div>
+            </ng-template>
+    
+        </ngb-carousel>
+    </div>
+    <!-- <img src = "../../assets/images/cglg.png"> -->
+    <div class="add_product" *ngFor = "let x of sliderdatahome; let i = index">
+        <div class="add_heading">
+            <div class="heading_text">{{x.name}}</div>
+        </div>
+        <app-slider [data] = x.data [type] = "x.type" [id] = "i.toString()"></app-slider>
+       <!-- <div class="add_images"> -->
+
+    </div>
+
+</div>

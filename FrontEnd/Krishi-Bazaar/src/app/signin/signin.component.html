@@ -1,0 +1,145 @@
+<div class="main" *ngIf="!error500">
+    <div class="authcard">
+        <div class="deets" style="right: 0;" [ngClass]="{
+            'rightregdeetscont': login,
+            'leftregdeetscont': !login
+        }">
+            <div
+                style="flex-basis: 70%; display: flex; flex-direction: column; text-align: center; justify-content: center; color: white;">
+                Havent Signed up yet? Krishi Bazaar has a lot in store for you</div>
+            <div class="switchbut" [ngClass]="{
+                'rightdeets': login,
+                'leftdeets': !login
+            }">Register now</div>
+        </div>
+        <div class="deets" style="left: 0;" [ngClass]="{
+            'rightlogindeetscont': !login,
+            'leftlogindeetscont': login
+        }">
+            <div
+                style="flex-basis: 70%; display: flex; flex-direction: column; text-align: center; justify-content: center; color: white;">
+                Already logged in? We missed you!</div>
+            <div class="switchbut" [ngClass]="{
+            'rightdeets': !login,
+            'leftdeets': login
+        }">Login</div>
+        </div>
+        <div class="imageslide" [ngClass]="{
+            'right': login,
+            'left': !login
+        }">
+            <div class="imageslideopaque" style="z-index: 1">
+                <div class="logincard" [ngClass]="{
+                    'cardleft': login,
+                    'cardright': !login
+                }">
+                    <div class="logintitle">
+                        Sign In
+                    </div>
+                    <div class="error" *ngIf="error">
+                        {{errormessage}}
+                        <div style="align-self: flex-end; background-color: black; padding: 2%; border-radius: 5px; cursor: pointer; margin-right: 2%; box-shadow: 1px 1px 2px rgb(75, 75, 75);"
+                            (click)="resendmail()" *ngIf="resendemail">
+                            Resend email
+                        </div>
+                    </div>
+                    <form [formGroup]="formlogin" class="input">
+                        <div *ngFor="let x of signindata">
+                            <input placeholder="{{x.placeholder}}" formControlName={{x.formname}} type={{x.type}} class="ip"
+                                *ngIf="!x.error">
+                            <div *ngIf="x.error" class="errormsg">
+                                <div class="message sb1">
+                                    {{x.errormsg}}
+                                </div>
+                                <input placeholder={{x.placeholder}} formControlName={{x.formname}} type={{x.type}}
+                                    class="ip iperror">
+                            </div>
+                        </div>
+                        <a routerLink="/forgotPassword" class="forgot">
+                            Forgot Password?
+                        </a>
+                    </form>
+                    <div class="submit" (click)="validatelogin()">
+                        <div class="kbbutton">
+                            Login
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="imageslidetransparent" (click)="move()" style="z-index: 2">
+
+            </div>
+            <div class="imageslideopaque" style="z-index: 3">
+                <div class="regcard" [ngClass]="{
+                    'regcardleft': !login,
+                    'regcardright': login
+                }">
+                    <div class="logintitle">
+                        Sign Up
+                    </div>
+                    <div class="error" *ngIf="error">
+                        {{errormessage}}
+                        <div style="align-self: flex-end; background-color: black; padding: 2%; border-radius: 5px; cursor: pointer; margin-right: 2%; box-shadow: 1px 1px 2px rgb(75, 75, 75);"
+                            (click)="resendmail()" *ngIf="resendemail">
+                            Resend email
+                        </div>
+                    </div>
+                    <form [formGroup]="formreg" class="input">
+                        <div class="regdiv">
+                            <div *ngFor="let x of signupdata" style="height: 20%;">
+                                <div *ngIf="x.type != 'dropdown'">
+                                    <input placeholder="{{x.placeholder}}" formControlName={{x.formname}} type={{x.type}}
+                                        class="ip" *ngIf=!x.error>
+                                    <div *ngIf=x.error class="errormsg">
+                                        <div class="message sb1">
+                                            {{x.errormsg}}
+                                        </div>
+                                        <input placeholder=x.placeholder formControlName={{x.formname}} type={{x.type}}
+                                            class="ip iperror">
+                                    </div>
+                                </div>
+                                <div *ngIf="x.type == 'dropdown'">
+                                    <mat-form-field>
+                                        <mat-label style="font-size: 100%;">{{x.placeholder}}</mat-label>
+                                        <mat-select [(value)]="x.value" class="ip" style="font-size: 100%; border-bottom: none;">
+                                            <div *ngIf="!x.hasOwnProperty('click')">
+                                                <div *ngFor="let y of x.options">
+                                                    <mat-option value="{{y.value}}" class="options">
+                                                        {{y.placeholder}}</mat-option>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="x.hasOwnProperty('click')">
+                                                <div *ngFor="let y of x.options" (click)="x.click(y.value)">
+                                                    <mat-option value="{{y.value}}" class="options">
+                                                        {{y.placeholder}}</mat-option>
+                                                </div>
+                                            </div>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div>
+                                <div [hidden]="phuser">
+                                    <div id="recaptcha"></div>
+                                    <div *ngIf="windowRef.confirmationResult">
+                                        <form [formGroup]="phoneotp">
+                                            <input placeholder="Enter Verification code" formControlName="code"
+                                                type="text">
+                                        </form>
+                                        <button (click)="verifyLoginCode()">Verify</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="submit" (click)="submitreg()">
+                        <div class="kbbutton">
+                            Register
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

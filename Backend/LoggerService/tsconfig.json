@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "lib": [
+      "es6"
+    ],
+    "sourceMap": true,
+    "outDir": "./dist",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "allowJs": true
+  },
+  "include": [
+    "./src",
+    "./static/openapi3.json"
+  ]
+}
