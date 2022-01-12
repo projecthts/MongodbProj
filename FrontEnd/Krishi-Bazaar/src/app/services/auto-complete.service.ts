@@ -9,10 +9,10 @@ export class AutoCompleteService {
   constructor(private httpClient: HttpClient) { }
 
   getAutoComplete(str: string){
-    return this.httpClient.get<any>("http://localhost:5001/v1/autocomplete/autocomplete?word=" + str);
+    return this.httpClient.get<any>("https://temp-name-1.herokuapp.com/v1/autocomplete/autocomplete?word=" + str);
   }
 
   addautocomplete(data: any){
-    return this.httpClient.post<any>("http://localhost:5001/v1/autocomplete/addautocomplete", data);
+    return this.httpClient.post<any>("https://temp-name-1.herokuapp.com/v1/autocomplete/addautocomplete", data);
   }
 }

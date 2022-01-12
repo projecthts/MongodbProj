@@ -25,12 +25,12 @@ export class SigninComponent implements OnInit {
   signupdata: any;
   error500: boolean = false;
 
-  url = "http://localhost:5001/v1/users/login";
+  url = "https://temp-name-1.herokuapp.com/v1/users/login";
 
   urls = {
-    'register': "http://localhost:5001/v1/users/registration",
-    'state': "http://localhost:5001/v1/location/states",
-    'district': "http://localhost:5001/v1/location/states/districts"
+    'register': "https://temp-name-1.herokuapp.com/v1/users/registration",
+    'state': "https://temp-name-1.herokuapp.com/v1/location/states",
+    'district': "https://temp-name-1.herokuapp.com/v1/location/states/districts"
   }
 
 

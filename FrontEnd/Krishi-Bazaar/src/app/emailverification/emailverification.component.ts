@@ -13,7 +13,7 @@ export class EmailverificationComponent implements OnInit {
 
   token: any;
 
-  url = "http://localhost:5001/v1/users/enableUser";
+  url = "https://temp-name-1.herokuapp.com/v1/users/enableUser";
 
   error: Boolean = false;
   errormessage: String = "";

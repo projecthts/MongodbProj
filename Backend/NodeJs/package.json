@@ -17,6 +17,7 @@
     "@types/nodemailer": "^6.4.0",
     "@types/passport": "^1.0.5",
     "bcrypt": "^5.0.0",
+    "connect-mongo": "^4.6.0",
     "cookie-parser": "1.4.5",
     "cors": "2.8.5",
     "crypto-js": "^4.0.0",

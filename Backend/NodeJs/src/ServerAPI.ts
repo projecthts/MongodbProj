@@ -8,6 +8,8 @@ import * as session from 'express-session';
 import * as mongoose from 'mongoose';
 import * as passport from 'passport';
 
+const MongoStore = require('connect-mongo');
+
 import { InputValidationError } from 'openapi-validator-middleware';
 import { configuration } from './support/appConfig';
 import { userscntrlr } from './controller/UsersCntrlr';
@@ -81,7 +83,8 @@ export class ServerAPI {
       secret: keys.serverkeys.SessionSecret,
       resave: false,
       saveUninitialized: false,
-      cookie: {secure: false}
+      cookie: {secure: false},
+      store: MongoStore.create({ mongoUrl: keys.serverkeys.MongoURI })
     }));
 
     //passport initialize

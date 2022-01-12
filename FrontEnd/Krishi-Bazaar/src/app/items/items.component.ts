@@ -23,8 +23,8 @@ export class ItemsComponent implements OnInit {
   user: any;
   generatejson: any[] = [];
   urls = {
-    'filter': "http://localhost:5001/v1/products/categories/items/filteritems",
-    'default': "http://localhost:5001/v1/products/categories/items/items",
+    'filter': "https://temp-name-1.herokuapp.com/v1/products/categories/items/filteritems",
+    'default': "https://temp-name-1.herokuapp.com/v1/products/categories/items/items",
   };
 
   errormessage: string = "";
@@ -96,7 +96,7 @@ export class ItemsComponent implements OnInit {
   //     "displayname": node.name
   //   })
   //   // console.log(node.name.split(" ").join("\n"));
-  //   this.httpClient.post<any>("http://localhost:5001/v1/products/test", this.generatejson[this.generatejson.length - 1]).subscribe(res => {
+  //   this.httpClient.post<any>("https://temp-name-1.herokuapp.com/v1/products/test", this.generatejson[this.generatejson.length - 1]).subscribe(res => {
   //     console.log("done");
   //   });
   //   for(let x of node.children){
