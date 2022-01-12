@@ -10,7 +10,9 @@ class Middlewares{
 
             //if successful, login user
             req.login(user, function (error) {
+                
                 if (error) return res.status(500).send({ "statusCode": 2, "message": error });
+                console.log("Logged in (Middleware.ts)");
                 next();
             });
         })(req, res, next);

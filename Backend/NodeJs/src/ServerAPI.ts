@@ -84,7 +84,7 @@ export class ServerAPI {
       secret: keys.serverkeys.SessionSecret,
       resave: false,
       saveUninitialized: false,
-      cookie: {secure: false},
+      cookie: {secure: true},
       store: MongoStore.create({
         mongoUrl:  keys.serverkeys.MongoURI
       })
