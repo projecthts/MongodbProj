@@ -26,8 +26,8 @@ export class UsersModel {
     return true
   }
 
-  public static login(body: I0_1): IPostResponse {
-    return { "statusCode": 0, "message": "Logged in!" };
+  public static login(body: I0_1): IGetResponse {
+    return { "statusCode": 0, "message": "Logged in!", "payload": {}};
   }
 
   public static authenticate(email: String, password: String, done: Function) {
