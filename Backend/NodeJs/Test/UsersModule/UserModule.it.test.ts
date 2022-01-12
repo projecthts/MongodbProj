@@ -21,7 +21,7 @@ import { Fix } from './Fix';
 
 describe("Logs in a user", function () {
 
-    let url1 = 'http://localhost:5001/v1/users/login';
+    let url1 = 'https://temp-name-1.herokuapp.com/v1/users/login';
     it("Returns status 200", function () {
         let body = {
             "email": "twinklebagdi@gmail.com",
@@ -98,7 +98,7 @@ describe("Logs in a user", function () {
 
 describe("Registers a user", function () {
 
-    let url1 = 'http://localhost:5001/v1/users/registration';
+    let url1 = 'https://temp-name-1.herokuapp.com/v1/users/registration';
 
     it("Return User already exits", function () {
         let body = {

@@ -370,7 +370,7 @@ autocompletedata = [{
 
 // for (let i of autocompletedata) {
 //     request.post({
-//         url: "http://localhost:5001/v1/products/test",
+//         url: "https://temp-name-1.herokuapp.com/v1/products/test",
 //         method: "POST",
 //         json: i
 //     }, function (error, response, body) {
@@ -380,7 +380,7 @@ autocompletedata = [{
 // for (let dben of products) {
 //     request.post({
 //         headers: { 'content-type': 'application/javascript' },
-//         url: 'http://localhost:5001/v1/products/product',
+//         url: 'https://temp-name-1.herokuapp.com/v1/products/product',
 //         body: dben
 //     }, function (error, response, body) {
 //         console.log(error);
