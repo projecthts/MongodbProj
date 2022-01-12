@@ -63,15 +63,6 @@
                     Payment
                 </div>
             </div>
-            <!-- <div class="pathitem">
-                Basket
-            </div>
-            <div class="pathitem">
-                Address
-            </div>
-            <div class="pathitem">
-                Payment
-            </div> -->
         </div>
         <div class = "baskettitle">
             <i class="fa fa-shopping-basket"></i>
@@ -84,17 +75,6 @@
             Your cart is empty.
         </div>
         <div class="basket" *ngIf="!isempty">
-            <!-- <div class="path">
-                <div class="pathitem">
-                    Basket
-                </div>
-                <div class="pathitem">
-                    Address
-                </div>
-                <div class="pathitem">
-                    Payment
-                </div>
-            </div> -->
             <div class="markings">
                 <div class="markingspace">
                 </div>
@@ -154,41 +134,11 @@
                             &#10008;
                         </div>
                     </div>
-                    <!-- <div class = "iteminfo">
-                        <div class = "itemname">
-                            {{x.title}}
-                        </div>
-                        <div class = "itemquantity">
-                            Quantity: {{x.quantity}}kg
-                        </div>
-                    </div>
-                    <div class = "purchaseinfo">
-                        <div class = "price">
-                            Total: Rs.{{x.totalCost}}
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
         <div class="order">
             <div class="orderbill" *ngIf="!isempty">
-                <!-- <div class = "orderbilltitle">
-                    Order Summary
-                </div> -->
-                <!-- <div class = "orderbillbody">
-                    <div class = "billitem">
-                        Items:  ₹{{cartTotal}}
-                    </div>
-                    <div class = "billitem">
-                        Shipping:  ₹{{deliveryCharge}}
-                    </div>
-                    <div class = "billitem st">
-                        Subtotal:  ₹{{cartSubtotal}}
-                    </div>  
-                    <div class = "billitem" style="color: blue;">
-                        Your Savings:  ₹{{cartDiscount}}
-                    </div>   
-                </div> -->
                 <app-ordersummary></app-ordersummary>
                 <button class="kbbutton" routerLink="/address">
                     Checkout Now

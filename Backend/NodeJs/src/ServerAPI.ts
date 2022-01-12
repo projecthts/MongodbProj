@@ -7,9 +7,9 @@ import * as path from 'path';
 import * as session from 'express-session';
 import * as mongoose from 'mongoose';
 import * as passport from 'passport';
-// const MongoDBStore = require('connect-mongodb-session')(session);
-// const MongoStore = require('connect-mongo')(session);
+
 const MongoStore = require('connect-mongo');
+
 import { InputValidationError } from 'openapi-validator-middleware';
 import { configuration } from './support/appConfig';
 import { userscntrlr } from './controller/UsersCntrlr';
