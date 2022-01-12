@@ -64,7 +64,7 @@ class UsersCntrlr {
   public static login(req: express.Request, res: express.Response): void {
     console.log('postLogin -', req.url);
     let body: I0_1 = req.body;
-      console.log(req.sessionID,req.session.id,req.session.cookie);
+    console.log(req.sessionID,req.session.id,req.session.cookie);
     let resp = UsersModel.login(body);
     let statusCode: any;
     if (resp.statusCode == 0) statusCode = 200;
