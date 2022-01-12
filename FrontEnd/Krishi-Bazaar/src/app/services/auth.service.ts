@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthService {
   private userEmail = new BehaviorSubject<any>({});
   private emailToggle = new BehaviorSubject<boolean>(true);
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private cs: CookieService) { }
 
   setEmailToggle(){
     this.emailToggle.next(!this.emailToggle);
@@ -29,6 +30,7 @@ export class AuthService {
   // }
 
   getUser(){
+     console.log(`connect.sid=${this.cs.get("connect.sid")}`);
     return this.httpClient.get<any>("https://temp-name-1.herokuapp.com/v1/users/user", {withCredentials: true});
   }
 

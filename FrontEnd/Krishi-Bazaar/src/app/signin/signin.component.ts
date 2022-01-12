@@ -93,6 +93,7 @@ export class SigninComponent implements OnInit {
       this.user = res.payload;
       console.log(this.user);
       console.log(res);
+      
       if (res.payload != "Unauthorized") {
         if (this.cs.check('role')) {
           if (this.cs.get('role') == 'farmer') {
@@ -393,7 +394,8 @@ export class SigninComponent implements OnInit {
     this.httpClient.post<any>(this.url, data, { withCredentials: true }).subscribe(
       (res) => {
         if (res.statusCode == 0) {
-          this.cs.set('connect.sid', res.payload.sessionID);
+          console.log("res", res)
+          // this.cs.set('connect.sid', res.payload.sessionID);
           this.as.getUser().subscribe(res => {
             if (res.payload == "Unauthorized") {
               this.router.navigate(['/401']);
