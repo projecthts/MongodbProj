@@ -7,7 +7,9 @@ import * as path from 'path';
 import * as session from 'express-session';
 import * as mongoose from 'mongoose';
 import * as passport from 'passport';
-
+// const MongoDBStore = require('connect-mongodb-session')(session);
+// const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo');
 import { InputValidationError } from 'openapi-validator-middleware';
 import { configuration } from './support/appConfig';
 import { userscntrlr } from './controller/UsersCntrlr';
@@ -30,7 +32,8 @@ import { twiliosmsservicecntrlr } from './controller/TwilioSmsServiceCntrlr';
 export class ServerAPI {
 
   private apiApp: express.Express;
-  private port: number;
+  private port: number | string;
+ 
 
 
   /**
@@ -39,7 +42,7 @@ export class ServerAPI {
   */
   public constructor() {
     this.apiApp = express();
-    this.port = configuration.webport;
+    this.port = process.env.PORT || configuration.webport;
     this.apiApp.disable('x-powered-by');
     this.apiApp.disable('etag');
 
@@ -70,7 +73,7 @@ export class ServerAPI {
   public setMiddleware(): void {
     this.apiApp.use(helmet());
     this.apiApp.use(cors({
-      origin: ['http://localhost:4200', 'http://127.0.0.1:4200', 'http://localhost:4400', 'http://localhost:5001'],
+      origin: ['http://localhost:4200', 'http://127.0.0.1:4200', 'http://localhost:4400', 'https://temp-name-1.herokuapp.com','https://mongodbproj-7e6d9.web.app'],
       credentials: true
     }));
     this.apiApp.use(cookieParser());
@@ -81,7 +84,10 @@ export class ServerAPI {
       secret: keys.serverkeys.SessionSecret,
       resave: false,
       saveUninitialized: false,
-      cookie: {secure: false}
+      cookie: {secure: false},
+      store: MongoStore.create({
+        mongoUrl:  keys.serverkeys.MongoURI
+      })
     }));
 
     //passport initialize

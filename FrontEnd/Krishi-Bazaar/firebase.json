@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/krishi-bazaar",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

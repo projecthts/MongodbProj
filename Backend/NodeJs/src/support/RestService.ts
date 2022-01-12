@@ -21,7 +21,7 @@ class RestService {
     public makedbentry(body: any) {
         request.post({
             headers: {'content-type' : 'application/x-www-form-urlencoded'},
-            url:     'http://localhost:5001/v1/products/product',
+            url:     'https://temp-name-1.herokuapp.com/v1/products/product',
             body:    body
           }, function(error, response, body){
             console.log(error);

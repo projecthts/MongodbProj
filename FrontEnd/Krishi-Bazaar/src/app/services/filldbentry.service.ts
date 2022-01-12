@@ -9,7 +9,7 @@ export class FilldbentryService {
   constructor(private httpClient: HttpClient) { }
 
   filldb(data: any){
-    return this.httpClient.post<any>("http://localhost:5001/v1/products/product", data);
+    return this.httpClient.post<any>("https://temp-name-1.herokuapp.com/v1/products/product", data);
   }
 
 

@@ -29,10 +29,10 @@ export class ProdbidComponent implements OnInit {
   bidQty: any;
 
   urls = {
-    "orders": "http://localhost:5001/v1/consumer/orders",
-    "item": "http://localhost:5001/v1/products/categories/items/item",
-    "bid": "http://localhost:5001/v1/products/product/bid",
-    "acceptbid": "http://localhost:5001/v1/farmers/farmer/bid",
+    "orders": "https://temp-name-1.herokuapp.com/v1/consumer/orders",
+    "item": "https://temp-name-1.herokuapp.com/v1/products/categories/items/item",
+    "bid": "https://temp-name-1.herokuapp.com/v1/products/product/bid",
+    "acceptbid": "https://temp-name-1.herokuapp.com/v1/farmers/farmer/bid",
   }
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router, private as: AuthService,
