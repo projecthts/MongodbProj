@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   error500: boolean = false;
 
-  url = "http://localhost:5001/v1/users/login";
+  url = "https://temp-name-1.herokuapp.com/v1/users/login";
 
   error: boolean = false;
   email: boolean = false;

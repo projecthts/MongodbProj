@@ -12,7 +12,7 @@ export class SliderComponent implements OnInit {
 
   products: any[] = [];
   urls = {
-    'product': "http://localhost:5001/v1/products/categories/items/item",
+    'product': "https://temp-name-1.herokuapp.com/v1/products/categories/items/item",
   };
 
   ngOnInit(): void {

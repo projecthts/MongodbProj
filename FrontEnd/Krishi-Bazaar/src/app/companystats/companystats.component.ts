@@ -14,9 +14,9 @@ import { Color } from 'ng2-charts';
 export class CompanystatsComponent implements OnInit {
 
   urls = {
-    "orders": "http://localhost:5001/v1/consumer/orders",
-    'item': "http://localhost:5001/v1/products/categories/items/item",
-    "stats": "http://localhost:5001/v1/companystats",
+    "orders": "https://temp-name-1.herokuapp.com/v1/consumer/orders",
+    'item': "https://temp-name-1.herokuapp.com/v1/products/categories/items/item",
+    "stats": "https://temp-name-1.herokuapp.com/v1/companystats",
   };
 
   error500: boolean = false;
