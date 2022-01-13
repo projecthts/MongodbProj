@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup ,Validators,AbstractControl} from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
@@ -131,48 +131,58 @@ export class SigninComponent implements OnInit {
     // });
   }
 
+  formlog(name: string) {
+    return this.formlogin.get(name)!;
+  }
+  formregget(name: string) {
+    return this.formreg.get(name)!;
+  }
+
   formlogin = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl('')
-  })
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern(
+        '^(([^<>()[\\]\\\\.,;:\\s@\\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\\"]+)*)|(\\".+\\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$'
+      ),
+    ]),
+    password: new FormControl('', [Validators.required]),
+  });
 
   formreg = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    phone: new FormControl(''),
-    password: new FormControl(''),
-    role: new FormControl('farmer'),
-    confirmpassword: new FormControl(''),
-    address: new FormControl(''),
-    district: new FormControl(''),
-    state: new FormControl(''),
-    pincode: new FormControl(''),
-  })
+    name: new FormControl('', [Validators.required]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern(
+        '^(([^<>()[\\]\\\\.,;:\\s@\\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\\"]+)*)|(\\".+\\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$'
+      ),
+    ]),
+    phone: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[2-9]{2}\\d{8}'),
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.pattern(
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/
+      ),
+    ]),
+    role: new FormControl('farmer',[Validators.required]),
+    confirmpassword: new FormControl('', [Validators.required]),
+    address: new FormControl('',[Validators.required]),
+    district: new FormControl('',[Validators.required]),
+    state: new FormControl('',[Validators.required]),
+    pincode: new FormControl('',[Validators.required]),
+  }, { validators: this.checkPasswords })
 
   phoneotp = new FormGroup({
     code: new FormControl(''),
   })
 
   validatelogin() {
-    var flag = 'true';
-    this.error = false;
-    this.signindata[0].error = false;
-    this.signindata[1].error = false;
-
-    if (this.formlogin.get("email")?.value == "" || !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(this.formlogin.get("email")?.value))) {
-      this.signindata[0].error = true;
-      this.signindata[0].errormsg = "Email badly formatted."
-      flag = 'false';
-    }
-
-    if (this.formlogin.get("password")?.value == "") {
-      this.signindata[1].error = true;
-      this.signindata[1].errormsg = "Password cannot be blank."
-      flag = 'false';
-    }
 
 
-    if (flag == 'true') {
+
+    if (!this.formlogin.invalid) {
       console.log("success");
       this.submitlogin();
     }
@@ -438,5 +448,12 @@ export class SigninComponent implements OnInit {
     );
 
   }
+  checkPasswords(group: AbstractControl) {
+    // here we have the 'passwords' group
+    let pass = group.get('password')?.value;
+    let confirmPass = group.get('confirmpassword')?.value;
 
+    console.log(pass, confirmPass, pass == confirmPass);
+    return pass === confirmPass ? null : { notSame: true };
+  }
 }
