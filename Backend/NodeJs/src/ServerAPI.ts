@@ -121,7 +121,7 @@ export class ServerAPI {
     this.apiApp.use('/v1/companystats', companystatscntrlr.router);
     this.apiApp.use('/v1/twiliosms',twiliosmsservicecntrlr.router);
     this.apiApp.use('/v1/autocomplete', autocompletecntrlr.router);
-    this.apiApp.use('/krishibazaar', krishibazaarcntrlr.router);
+    this.apiApp.use('/', krishibazaarcntrlr.router);
     this.apiApp.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
       if (err instanceof InputValidationError) {
         return res.status(400).json({ more_info: JSON.stringify(err.errors) });
