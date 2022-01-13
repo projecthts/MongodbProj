@@ -1,0 +1,189 @@
+<div class="logisticsmain">
+    <div class="togglebtns">
+      <button class="togglebtn"  [ngStyle]="{'background-color': consumer ? 'blueviolet' : 'purple'}" (click)="consumerToggle(consumer)">Consumer</button>
+      <div style="color: black; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 200%;">Krishi Bazaar Logistics</div>
+      <button class="togglebtn" [ngStyle]="{'background-color': farmer ? 'blueviolet' : 'purple'}" (click)="farmerToggle(farmer)">Farmer</button>
+  
+    </div>
+  
+  
+    <div class="main" *ngIf="consumer" (click)="consumerToggle(consumer)">
+      <form class="details" [formGroup]="consumerForm">
+        <input formControlName="trackingId" class="deets" id="trackingId" type="text" placeholder="Tracking ID">
+        <input formControlName="DeliveryBy" class="deets" type="text" id="date" placeholder="Estimated Date Of Delivery" onfocus="(this.type='date')" onblur="(this.type='text')" value="" min="1997-01-01"
+          max="2030-12-31">
+  
+        <input class="deets" formControlName="DeliveryPerson" type="text" placeholder="Delivery Person">
+        <div class="deets">
+          <mat-form-field class="dropdown" style="background-color: blueviolet;">
+            <mat-label style="font-size: 100%; color: white;">Select Status</mat-label>
+            <mat-select formControlName="tracking" [(value)]="selectedstatus" class="ipp">
+              <div *ngFor="let status of statuses">
+                <mat-option value="{{status.id}}" style="color: white;">
+                  {{status.name}}</mat-option>
+              </div>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+  
+        <input formControlName="deliveredon" class="deets" type="text" id="date" placeholder="Delivered on" onfocus="(this.type='date')" onblur="(this.type='text')"  value="" min="1997-01-01"
+          max="2030-12-31">
+        <div class="deets"><button class="submitbtn" (click)=consumerSubmit()>Submit</button></div>
+      </form>
+  
+  
+      <div class="data">
+        <table class="tab">
+          <tr>
+            <th *ngFor="let column of consumerheaders">
+              {{column}}
+            </th>
+          </tr>
+          <tr *ngFor="let row of consumerdetails; let ind = index"
+            [ngStyle]="{'background-color': (ind % 2 == 0) ? '#f4f4f4' : '#ffffff'}">
+            <td>
+              {{row._id}}
+            </td>
+            <td>
+              {{row.productId}}
+            </td>
+            <td>
+              {{row.name}}
+            </td>
+            <td>
+              <div *ngFor="let categ of row.categories">
+                {{categ.name}}
+              </div>
+            </td>
+            <td>
+              {{row.quantity}}
+            </td>
+            <td>
+              {{date(row)}}
+            </td>
+            <td>
+              {{row.farmername}}
+            </td>
+            <td>
+              {{row.pickupaddress.address}}
+              {{row.pickupaddress.district}}
+              {{row.pickupaddress.state}}
+              {{row.pickupaddress.pincode}}
+            </td>
+            <td>
+              {{row.consumername}}
+            </td>
+            <td>
+              {{row.deliveryaddress.address}}
+              {{row.deliveryaddress.district}}
+              {{row.deliveryaddress.state}}
+              {{row.deliveryaddress.pincode}}
+            </td>
+            <td>
+              {{row.DeliveryPerson}}
+            </td>
+            <td>
+              {{status[num(row.tracking) - 1]}}
+            </td>
+            <td>
+              {{row.DeliveryBy | date:'mediumDate'}} 
+            </td>
+            <button (click)="this.consumerForm.controls['trackingId'].setValue(row._id);
+            this.consumerForm.controls['DeliveryPerson'].setValue(row.DeliveryPerson);
+            this.consumerForm.controls['tracking'].setValue(row.tracking);" style="width: 5vh;">&#x270F;</button>
+  
+          </tr>
+        </table>
+      </div>
+  
+  
+      <!-- Estimated Date of Delivery, Delivery Person Name, Status [placed,picked, in transit, out for delivery, delivered ], Delivered On -->
+  
+    </div>
+  
+  
+    <!-- FARMER -->
+    <div class="main" *ngIf="farmer" (click)="farmerToggle(farmer)">
+  
+      <form class="details" [formGroup]="farmerForm">
+        <input formControlName="ReqId" id="reqId" class="deets" type="text" placeholder="Request ID">
+        <input formControlName="pickupDate" class="deets" type="text" id="date" placeholder="Date Of Pickup" onfocus="(this.type='date')" onblur="(this.type='text')"  value="" min="1997-01-01"
+          max="2030-12-31">
+          <input formControlName="ProductId" class="deets" type="text" placeholder="Product ID">
+          <input formControlName="quantity" class="deets" type="number" placeholder="Pickup Quantity">
+        <input formControlName="pickupPerson" class="deets" type="text" placeholder="Pickup Person Name">
+        <div class="deets">
+          <mat-form-field class="dropdown" style="background-color: blueviolet;">
+            <mat-label style="font-size: 100%; color: white;">Select Status</mat-label>
+            <mat-select formControlName="status" [(value)]="selectedpickupstatus" class="ipp">
+              <div *ngFor="let pickupstatus of pickupstatuses">
+                <mat-option value="{{pickupstatus.id}}" style="color: white;">
+                  {{pickupstatus.name}}</mat-option>
+              </div>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+  
+        <!-- <input class="deets" type="text" id="date" placeholder="Delivered on" onfocus="(this.type='date')" onblur="(this.type='text')"  value="" min="1997-01-01"
+          max="2030-12-31"> -->
+        <div class="deets"><button class="submitbtn" (click)="farmerSubmit()">Submit</button></div>
+      </form>
+  
+    <div class="data">
+      <table class="tab">
+        <tr>
+          <th *ngFor="let column of farmerheaders">
+            {{column}}
+          </th>
+        </tr>
+        <tr *ngFor="let row of farmerdetails; let ind = index"
+          [ngStyle]="{'background-color': (ind % 2 == 0) ? '#f4f4f4' : '#ffffff'}">
+          <td>
+            {{row.ReqId}}
+          </td>
+          <td>
+            {{row.ProductId}}
+          </td>
+          <td>
+            {{row.name}}
+          </td>
+          <td>
+            <div *ngFor="let categ of row.categories">
+              {{categ.name}}
+            </div>
+          </td>
+          <td>
+            {{row.quantity}}
+          </td>
+          <td>
+            {{row.farmername}}
+          </td>
+          <td>
+            {{row.pickupDate | date:'mediumDate'}}
+          </td>
+          <td>
+            {{row.pickupaddress.address}}
+            {{row.pickupaddress.district}}
+            {{row.pickupaddress.state}}
+            {{row.pickupaddress.pincode}}
+          </td>
+          
+          <td>
+            {{row.pickupPerson}}
+          </td>
+          <td>
+            {{pickedupstatus[num(row.status) - 1]}}
+          </td>
+          <button (click)="this.farmerForm.controls['ReqId'].setValue(row.ReqId);
+          this.farmerForm.controls['ProductId'].setValue(row.ProductId);
+          this.farmerForm.controls['quantity'].setValue(row.quantity);
+          this.farmerForm.controls['pickupPerson'].setValue(row.pickupPerson);
+          this.farmerForm.controls['status'].setValue(row.status);" style="width: 5vh;">&#x270F;</button>
+  
+        </tr>
+      </table>
+    </div>
+  </div>
+  
