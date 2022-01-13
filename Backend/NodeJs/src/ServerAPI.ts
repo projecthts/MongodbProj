@@ -25,6 +25,7 @@ import {passport_config as pc} from './support/PassportConfig'
 import { companystatscntrlr } from './controller/CompanystatsCntrlr';
 import { autocompletecntrlr } from './controller/AutoCompleteCntrlr';
 import { twiliosmsservicecntrlr } from './controller/TwilioSmsServiceCntrlr';
+import { krishibazaarcntrlr } from './controller/krishibazaarCntrlr';
 
 
 
@@ -75,6 +76,7 @@ export class ServerAPI {
     this.apiApp.use(cors({
       origin: ['http://localhost:4200', 'http://127.0.0.1:4200', 'http://localhost:4400', 'https://temp-name-1.herokuapp.com','https://mongodbproj-7e6d9.web.app'],
       credentials: true
+      // allowedHeaders: ['http://localhost:4200', 'http://127.0.0.1:4200', 'http://localhost:4400', 'https://temp-name-1.herokuapp.com','https://mongodbproj-7e6d9.web.app']
     }));
     this.apiApp.use(cookieParser());
     this.apiApp.use(express.json());
@@ -100,7 +102,7 @@ export class ServerAPI {
     passport.deserializeUser(pc.deserialize());
 
     this.apiApp.use(express.urlencoded({ 'extended': true }));
-    this.apiApp.use(express.static(path.join(__dirname, '..', 'static')));
+    this.apiApp.use(express.static('./dist/Krishi-Bazaar/'));
   }
 
   /**
@@ -119,6 +121,7 @@ export class ServerAPI {
     this.apiApp.use('/v1/companystats', companystatscntrlr.router);
     this.apiApp.use('/v1/twiliosms',twiliosmsservicecntrlr.router);
     this.apiApp.use('/v1/autocomplete', autocompletecntrlr.router);
+    this.apiApp.use('/krishibazaar', krishibazaarcntrlr.router);
     this.apiApp.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
       if (err instanceof InputValidationError) {
         return res.status(400).json({ more_info: JSON.stringify(err.errors) });

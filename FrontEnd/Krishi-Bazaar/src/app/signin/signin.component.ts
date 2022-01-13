@@ -393,7 +393,7 @@ export class SigninComponent implements OnInit {
     this.httpClient.post<any>(this.url, data, { withCredentials: true }).subscribe(
       (res) => {
         if (res.statusCode == 0) {
-          this.cs.set('connect.sid', res.payload.sessionID);
+          // this.cs.set('connect.sid', res.payload.sessionID);
           this.as.getUser().subscribe(res => {
             if (res.payload == "Unauthorized") {
               this.router.navigate(['/401']);
