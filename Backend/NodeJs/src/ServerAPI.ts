@@ -72,7 +72,9 @@ export class ServerAPI {
   * @returns void
   */
   public setMiddleware(): void {
-    this.apiApp.use(helmet());
+    this.apiApp.use(helmet({
+      contentSecurityPolicy: false,
+   }));
     this.apiApp.use(cors({
       origin: ['http://localhost:4200', 'http://127.0.0.1:4200', 'http://localhost:4400', 'https://temp-name-1.herokuapp.com','https://mongodbproj-7e6d9.web.app'],
       credentials: true
