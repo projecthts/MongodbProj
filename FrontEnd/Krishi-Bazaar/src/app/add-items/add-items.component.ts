@@ -330,7 +330,7 @@ export class AddItemsComponent implements OnInit {
     costing: this.fb.array([
       this.addCostingFormGroup()
     ]),
-    rating: [3.5],
+    rating: [0],
     noOfUsers: [0],
     comments: this.fb.array([]),
 
