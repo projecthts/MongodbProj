@@ -29,6 +29,7 @@ import { ConsumerBidComponent } from './consumer-bid/consumer-bid.component';
 import { FarmerBidComponent } from './farmer-bid/farmer-bid.component';
 import { CompanystatsComponent } from './companystats/companystats.component';
 import { TestComponent } from './test/test.component';
+import { LogisticsComponent } from './logistics/logistics.component';
 
 const routes: Routes = [
   {
@@ -165,7 +166,10 @@ const routes: Routes = [
     path: 'test',
     component: TestComponent
   },
-
+  {
+    path: 'logistics',
+    component: LogisticsComponent
+  },
   {
     path: '',
     redirectTo: 'signin',

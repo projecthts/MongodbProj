@@ -60,6 +60,7 @@ import { AidComponent } from './aid/aid.component';
 import { TestcomponentComponent } from './testcomponent/testcomponent.component';
 import { CompanystatsComponent } from './companystats/companystats.component';
 import { TestComponent } from './test/test.component';
+import { LogisticsComponent } from './logistics/logistics.component';
 
 
 firebase.initializeApp(environment.firebaseConfig);
@@ -112,6 +113,7 @@ export class HammerConfig extends HammerGestureConfig {
     TestcomponentComponent,
     CompanystatsComponent,
     TestComponent,
+    LogisticsComponent,
   ],
   imports: [
     BrowserModule,
