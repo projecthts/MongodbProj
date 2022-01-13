@@ -2,6 +2,10 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    overflow: scroll;
+    height: 80vh;
+    align-self: center;
+    padding: 2%;
   }
 
   .chart-2{
@@ -12,7 +16,14 @@
   }
 
   .main{
-    min-height: calc(94vh - 39px);
-    overflow: hidden;
+    height: 100vh;
+    max-width: 100vw;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    z-index: 1000000;
+    background-color: white;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }

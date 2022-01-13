@@ -19,7 +19,7 @@
             <mat-label style="font-size: 100%; color: white;">Select Status</mat-label>
             <mat-select formControlName="tracking" [(value)]="selectedstatus" class="ipp">
               <div *ngFor="let status of statuses">
-                <mat-option value="{{status.id}}" style="color: white;">
+                <mat-option value="{{status.id}}">
                   {{status.name}}</mat-option>
               </div>
             </mat-select>
@@ -118,7 +118,7 @@
             <mat-label style="font-size: 100%; color: white;">Select Status</mat-label>
             <mat-select formControlName="status" [(value)]="selectedpickupstatus" class="ipp">
               <div *ngFor="let pickupstatus of pickupstatuses">
-                <mat-option value="{{pickupstatus.id}}" style="color: white;">
+                <mat-option value="{{pickupstatus.id}}">
                   {{pickupstatus.name}}</mat-option>
               </div>
             </mat-select>
