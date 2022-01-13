@@ -50,9 +50,9 @@ export class AddressComponent implements OnInit {
   messagepickupdistrict:string = "";
 
   urls = {
-    'state': "https://temp-name-1.herokuapp.com/v1/location/states",
-    'district': "https://temp-name-1.herokuapp.com/v1/location/states/districts",
-    'address': "https://temp-name-1.herokuapp.com/v1/users/address",
+    'state': "http://localhost:5001/v1/location/states",
+    'district': "http://localhost:5001/v1/location/states/districts",
+    'address': "http://localhost:5001/v1/users/address",
   }
 
   states: any;

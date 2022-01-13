@@ -44,10 +44,10 @@ export class ItemComponent implements OnInit {
 
 
   urls = {
-    'cart': "https://temp-name-1.herokuapp.com/v1/consumer/cart",
-    'default': "https://temp-name-1.herokuapp.com/v1/products/categories/items/item",
-    'comment': "https://temp-name-1.herokuapp.com/v1/products/product/comment",
-    'bid': "https://temp-name-1.herokuapp.com/v1/products/product/bid"
+    'cart': "http://localhost:5001/v1/consumer/cart",
+    'default': "http://localhost:5001/v1/products/categories/items/item",
+    'comment': "http://localhost:5001/v1/products/product/comment",
+    'bid': "http://localhost:5001/v1/products/product/bid"
   };
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router,

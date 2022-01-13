@@ -55,7 +55,7 @@
                                 <!-- (optionSelected)='try($event.option.value)' -->
                             <mat-autocomplete #auto="matAutocomplete" >
                                 <mat-option *ngFor="let x of words" [value]="x.displayname" (click) = "searchsub(x.category)">
-                                   {{x.displayname}}<span style="font-size: 70%; color: grey; margin: 10px;">From {{x.category}}</span>
+                                   {{x.displayname}}<span style="font-size: 70%; color: grey; margin: 10px;" *ngIf = "x.hasOwnProperty('category')">From {{x.category}}</span>
                                 </mat-option>
                             </mat-autocomplete>
                         </mat-form-field>

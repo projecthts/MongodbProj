@@ -13,7 +13,7 @@ export class ForgotPasswordComponent implements OnInit {
   authError: any;
   user: any;
 
-  url = "https://temp-name-1.herokuapp.com/v1/emailservice";
+  url = "http://localhost:5001/v1/emailservice";
 
   error: boolean = false;
   email: boolean = false;

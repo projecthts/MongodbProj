@@ -15,9 +15,9 @@ export class AppComponent {
   consumer:boolean=true;
 
   urls = {
-    consumers: "https://temp-name-1.herokuapp.com/v1/logistics/orderdetails",
-    farmers: "https://temp-name-1.herokuapp.com/v1/logistics/pickup",
-    item: "https://temp-name-1.herokuapp.com/v1/products/categories/items/item"
+    consumers: "http://localhost:5001/v1/logistics/orderdetails",
+    farmers: "http://localhost:5001/v1/logistics/pickup",
+    item: "http://localhost:5001/v1/products/categories/items/item"
   }
 
   status = ["Order Placed", "Item Picked", "In Transit", "Out for Delivery", "Delivered"];

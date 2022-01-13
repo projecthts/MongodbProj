@@ -111,7 +111,7 @@ export class AppComponent implements OnDestroy {
         this.acs.getAutoComplete(res).subscribe(res => {
           if(res.payload.length == 0) {this.words = null; return}
           this.words = res.payload;
-          console.log(this.words);
+          // console.log(this.words);
         })
       })
 

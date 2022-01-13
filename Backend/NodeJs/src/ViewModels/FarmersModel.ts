@@ -75,13 +75,13 @@ export class FarmersModel {
           var transporter = nm.createTransport({
             service: 'gmail',
             auth: {
-              user: 'twinkishavaish@gmail.com',
-              pass: '0618062020'
+              user: 'projecthts.16.4@gmail.com',
+              pass: 'lswxhrkmzegcvhsa'
             }
           });
     
           var mailOptions = {
-            from: 'twinkishavaish@gmail.com',
+            from: 'projecthts.16.4@gmail.com',
             to: String(con.email),
             subject: "Bidding Request Accepted",
             html: "Hello,<br>" + "Your bid for quantity " + body.quantity + "Kgs and cost Rs." + body.cost + " has been acccepted. Please contact the Farmer <br>" + "Name: " + farmer.name + "<br>Phone No.: " + farmer.phone + "<br>E-mail : " + farmer.email

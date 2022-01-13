@@ -43,7 +43,7 @@ export class ResendemailComponent implements OnInit {
     }
 
     this.emailsent = false;
-    let url = "https://temp-name-1.herokuapp.com/v1/emailservice"
+    let url = "http://localhost:5001/v1/emailservice"
     let data = {
       email: this.form.get("email")?.value,
       type: "emailver"

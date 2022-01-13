@@ -53,9 +53,9 @@ export class RegistrationComponent implements OnInit {
   user:any;
 
   urls = {
-    'register' : "https://temp-name-1.herokuapp.com/v1/users/registration",
-    'state' : "https://temp-name-1.herokuapp.com/v1/location/states",
-    'district' : "https://temp-name-1.herokuapp.com/v1/location/states/districts"
+    'register' : "http://localhost:5001/v1/users/registration",
+    'state' : "http://localhost:5001/v1/location/states",
+    'district' : "http://localhost:5001/v1/location/states/districts"
   }
 
   states: any;
@@ -93,7 +93,7 @@ export class RegistrationComponent implements OnInit {
 
   }
 
-  //url = "https://temp-name-1.herokuapp.com/authentication/registration";
+  //url = "http://localhost:5001/authentication/registration";
 
   form = new FormGroup({
     name: new FormControl(''),

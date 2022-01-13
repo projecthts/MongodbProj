@@ -19,8 +19,8 @@ export class PickupComponent implements OnInit {
   constructor(private httpClient: HttpClient, private router: Router, private as: AuthService,private cs: CookieService) { }
 
   urls = {
-    "pickup": "https://temp-name-1.herokuapp.com/v1/logistics/pickup",
-    "product": "https://temp-name-1.herokuapp.com/v1/products/categories/items/item",
+    "pickup": "http://localhost:5001/v1/logistics/pickup",
+    "product": "http://localhost:5001/v1/products/categories/items/item",
   }
 
   ngOnInit(): void {

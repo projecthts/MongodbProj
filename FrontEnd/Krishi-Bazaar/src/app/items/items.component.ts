@@ -23,8 +23,8 @@ export class ItemsComponent implements OnInit {
   user: any;
   generatejson: any[] = [];
   urls = {
-    'filter': "https://temp-name-1.herokuapp.com/v1/products/categories/items/filteritems",
-    'default': "https://temp-name-1.herokuapp.com/v1/products/categories/items/items",
+    'filter': "http://localhost:5001/v1/products/categories/items/filteritems",
+    'default': "http://localhost:5001/v1/products/categories/items/items",
   };
 
   errormessage: string = "";
@@ -39,8 +39,8 @@ export class ItemsComponent implements OnInit {
     this.categories = this.init(null);
     this.as.getUser().subscribe(res => {
       this.user = res;
-      console.log(this.user);
-      console.log(res);
+      // console.log(this.user);
+      // console.log(res);
       if (res.payload == "Unauthorized") {
         if (this.cs.check('role')) {
           if (this.cs.get('role') != 'newuser') {
@@ -64,13 +64,10 @@ export class ItemsComponent implements OnInit {
       })
 
     this.cat = this.route.snapshot.queryParams['category']
-    console.log(this.cat, this.cat == undefined, this.categories)
     if(this.cat != undefined && this.cat.split('/')[0] != "nocat"){
       for(let x of this.categories){
-        // this.todelete(x);
         if(x.name != this.cat) this.searchchildren(x);
         else this.addinchildren(x);
-        // console.log(this.catArray);
       }
       this.apiCall();
     }
@@ -79,30 +76,6 @@ export class ItemsComponent implements OnInit {
     }
     else this.defaultApiCall();
   }
-
-
-
-  // findparent(node: Node): string{
-  //   if(node.parent){
-  //     return this.findparent(node.parent) + " / " + node.name;
-  //   }
-  //   else return node.name
-  // }
-
-  // todelete(node: Node){
-  //   this.generatejson.push({
-  //     "word": node.name.split(" ").join("\n"),
-  //     "category": this.findparent(node),
-  //     "displayname": node.name
-  //   })
-  //   // console.log(node.name.split(" ").join("\n"));
-  //   this.httpClient.post<any>("https://temp-name-1.herokuapp.com/v1/products/test", this.generatejson[this.generatejson.length - 1]).subscribe(res => {
-  //     console.log("done");
-  //   });
-  //   for(let x of node.children){
-  //     this.todelete(x);
-  //   }
-  // }
 
   addinchildren(node: Node){
     if(node.children.length){
@@ -116,7 +89,13 @@ export class ItemsComponent implements OnInit {
   searchchildren(node: Node){
     if(node.children.length){
       for(let i of node.children){
+        
         if(i.name == this.cat) {this.addinchildren(i); return}
+        else{
+          if(i.children.length)
+          for(let j of i.children)
+          if(j.name == this.cat) {this.addinchildren(j); return}
+        }
       }
     }
   }
@@ -124,9 +103,7 @@ export class ItemsComponent implements OnInit {
   defaultApiCall() {
     this.httpClient.get<any>(this.urls.default + "?id=" + this.cat).subscribe(
       (res) => {
-        console.log(res.message);
         this.items = res.payload;
-        //console.log(this.items);
       },
       (err) => {
         console.log(err);
@@ -160,10 +137,10 @@ export class ItemsComponent implements OnInit {
       }
       this.httpClient.get<any>(this.urls.filter + "?" + str.slice(1)).subscribe(
         (res) => {
-          console.log(res.message);
+          // console.log(res.message);
           this.items = res.payload;
-          this.catArray = [];
-          console.log(this.items);
+          // this.catArray = [];
+          // console.log(this.items);
         },
         (err) => {
           console.log(err);
@@ -197,6 +174,7 @@ export class ItemsComponent implements OnInit {
       }
       else {
         this.catArray.push(node.id);
+        // console.log("Hi", this.catArray)
       }
     }
   }
@@ -223,14 +201,10 @@ export class ItemsComponent implements OnInit {
   onClickx(node: Node){
     if(node.evalcheck == "checked") node.evalcheck = "unchecked";
     else node.evalcheck = "checked";
-    if (node.children.length){
-      this.toggleallchildrenx(node, node.evalcheck)
-    }
+    this.toggleallchildrenx(node, node.evalcheck)
     if(node.parent){
       this.toggleallparents(node);
     }
-    console.log(this.catArray)
-
   }
 
 

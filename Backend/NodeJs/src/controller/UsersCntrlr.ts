@@ -1,5 +1,5 @@
 import * as express from 'express';
-import * as crypto from 'crypto';
+// import * as crypto from 'crypto';
 
 import { Validator } from '../support/Validator';
 import { UsersModel } from '../ViewModels/UsersModel';
@@ -67,13 +67,13 @@ class UsersCntrlr {
       // console.log(req.sessionID,req.session.id,req.session.cookie);
 
     let resp = UsersModel.login(body);
-    var temp="s:"+req.sessionID;
-    temp+="."+crypto.createHmac('sha256', keys.serverkeys.SessionSecret)
-    .update(req.sessionID)
-    .digest('base64')
-    .replace(/\=+$/, '');
-    console.log(temp);
-    resp.payload = {"sessionID": req.sessionID} 
+    // var temp="s:"+req.sessionID;
+    // temp+="."+crypto.createHmac('sha256', keys.serverkeys.SessionSecret)
+    // .update(req.sessionID)
+    // .digest('base64')
+    // .replace(/\=+$/, '');
+    // console.log(temp);
+    // resp.payload = {"sessionID": req.sessionID} 
     let statusCode: any;
     if (resp.statusCode == 0) statusCode = 200;
     else if (resp.statusCode == 1) statusCode = 200;
