@@ -4,7 +4,7 @@ export let logindata = [
         "formname": "email",
         "type": "email",
         "error": false,
-        "errormsg": ""
+        "errormsg": "Email is invalid"
     },
     {
         "placeholder": "Enter Password",
@@ -22,7 +22,7 @@ export let regdata = [
         "formname": "name",
         "type": "text",
         "error": false,
-        "errormsg": ""
+        "patternerror": ""
     },
 
     {
@@ -30,7 +30,7 @@ export let regdata = [
         "formname": "email",
         "type": "email",
         "error": false,
-        "errormsg": ""
+        "patternerror": "Email is invalid"
     },
 
     {
@@ -38,7 +38,7 @@ export let regdata = [
         "formname": "phone",
         "type": "number",
         "error": false,
-        "errormsg": ""
+        "patternerror": "Phone is invalid. Please provide a 10 digit phone number."
     },
 
     {
@@ -46,7 +46,7 @@ export let regdata = [
         "formname": "password",
         "type": "password",
         "error": false,
-        "errormsg": ""
+        "patternerror": "Password should contain [a-z],[A-Z],[0-9],a special character"
     },
 
     {
@@ -54,7 +54,7 @@ export let regdata = [
         "formname": "confirmpassword",
         "type": "password",
         "error": false,
-        "errormsg": ""
+        "patternerror": "Passwords don't match!"
     },
 
     {
@@ -62,7 +62,7 @@ export let regdata = [
         "value": null,
         "type": "dropdown",
         "error": false,
-        "errormsg": "",
+        "patternerror": "",
         "options": [{
             "value": "farmer",
             "placeholder": "Farmer + Consumer"
@@ -80,7 +80,7 @@ export let regdata = [
         "formname": "address",
         "type": "text",
         "error": false,
-        "errormsg": ""
+        "patternerror": ""
     },
 
     {
@@ -88,7 +88,7 @@ export let regdata = [
         "formname": "pincode",
         "type": "number",
         "error": false,
-        "errormsg": ""
+        "patternerror": "Enter your pin code."
     },
 
     {
@@ -96,7 +96,7 @@ export let regdata = [
         "value": null,
         "type": "dropdown",
         "error": false,
-        "errormsg": "",
+        "patternerror": "",
         "options": [],
         "click": null
 
@@ -107,7 +107,7 @@ export let regdata = [
         "value": null,
         "type": "dropdown",
         "error": false,
-        "errormsg": "",
+        "patternerror": "",
         "options": []
 
 

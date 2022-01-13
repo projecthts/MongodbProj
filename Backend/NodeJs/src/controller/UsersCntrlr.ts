@@ -1,11 +1,9 @@
 import * as express from 'express';
-// import * as crypto from 'crypto';
 
 import { Validator } from '../support/Validator';
 import { UsersModel } from '../ViewModels/UsersModel';
 import { I0_1, I0_2, I0_3, I0_4, I0_5, I12,} from '../support/Interfaces';
 import { middleware } from '../support/Middlewares';
-import { keys } from '../support/Keys';
 
 class UsersCntrlr {
 
@@ -72,14 +70,15 @@ class UsersCntrlr {
     // .update(req.sessionID)
     // .digest('base64')
     // .replace(/\=+$/, '');
-    // console.log(temp);
-    // resp.payload = {"sessionID": req.sessionID} 
+
+
     let statusCode: any;
     if (resp.statusCode == 0) statusCode = 200;
     else if (resp.statusCode == 1) statusCode = 200;
     else if (resp.statusCode == 2) statusCode = 500;
     else if (resp.statusCode == 3) statusCode = 401;
     res.status(statusCode).send(resp);
+    
   }
 
   /**
@@ -184,10 +183,14 @@ class UsersCntrlr {
   * @returns void
   */
   public static getUser(req: express.Request, res: express.Response): void {
+    
     console.log('getUser -', req.url);
-    console.log(req.user)
+    console.log(req.sessionID);
+    console.log(req.user);
+    console.log(req.headers);
     if(req.user) res.status(200).send({ "statusCode": 0, "message": "", "payload": req.user});
     else res.status(200).send({ "statusCode": 0, "message": "", "payload": "Unauthorized"});
+    
   }
 
   /**

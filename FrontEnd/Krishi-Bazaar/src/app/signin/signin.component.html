@@ -45,15 +45,21 @@
                     </div>
                     <form [formGroup]="formlogin" class="input">
                         <div *ngFor="let x of signindata">
-                            <input placeholder="{{x.placeholder}}" formControlName={{x.formname}} type={{x.type}} class="ip"
-                                *ngIf="!x.error">
-                            <div *ngIf="x.error" class="errormsg">
-                                <div class="message sb1">
-                                    {{x.errormsg}}
+                            <input placeholder="{{x.placeholder}}" formControlName={{x.formname}} type={{x.type}}
+                                class="ip">
+                    
+                            <div *ngIf="
+                                  formlog(x.formname).invalid &&
+                                  (formlog(x.formname).dirty || formlog(x.formname).touched)"
+                                class="alert alert-danger">
+                                <div *ngIf="formlog(x.formname).errors?.required">
+                                    {{ x.formname }} is required.
                                 </div>
-                                <input placeholder={{x.placeholder}} formControlName={{x.formname}} type={{x.type}}
-                                    class="ip iperror">
+                                <div *ngIf="formlog(x.formname).errors?.pattern">
+                                    {{ x.patternerror }}
+                                </div>
                             </div>
+                        
                         </div>
                         <a routerLink="/forgotPassword" class="forgot">
                             Forgot Password?
@@ -88,20 +94,34 @@
                         <div class="regdiv">
                             <div *ngFor="let x of signupdata" style="height: 20%;">
                                 <div *ngIf="x.type != 'dropdown'">
-                                    <input placeholder="{{x.placeholder}}" formControlName={{x.formname}} type={{x.type}}
-                                        class="ip" *ngIf=!x.error>
-                                    <div *ngIf=x.error class="errormsg">
-                                        <div class="message sb1">
-                                            {{x.errormsg}}
+                                    <input placeholder="{{x.placeholder}}" formControlName={{x.formname}}
+                                        type={{x.type}} class="ip">
+
+                                    <div *ngIf="
+                                            formregget(x.formname).invalid &&
+                                                (formregget(x.formname).dirty ||
+                                                formregget(x.formname).touched)
+                                            " class="alert alert-danger">
+                                        <div *ngIf="formregget(x.formname).errors?.required">
+                                            {{ x.formname }} is required.
                                         </div>
-                                        <input placeholder=x.placeholder formControlName={{x.formname}} type={{x.type}}
-                                            class="ip iperror">
+                                        <div *ngIf="formregget(x.formname).errors?.pattern">
+                                            {{ x.patternerror }}
+                                        </div>
+                                    </div>
+                                    <div *ngIf="
+                  formreg.hasError('notSame') &&
+                    x.formname == 'confirmpassword' &&
+                    !formregget('confirmpassword').errors?.required
+                  " class="alert alert-danger">
+                                        Passwords don't match
                                     </div>
                                 </div>
                                 <div *ngIf="x.type == 'dropdown'">
                                     <mat-form-field>
                                         <mat-label style="font-size: 100%;">{{x.placeholder}}</mat-label>
-                                        <mat-select [(value)]="x.value" class="ip" style="font-size: 100%; border-bottom: none;">
+                                        <mat-select [(value)]="x.value" class="ip"
+                                            style="font-size: 100%; border-bottom: none;">
                                             <div *ngIf="!x.hasOwnProperty('click')">
                                                 <div *ngFor="let y of x.options">
                                                     <mat-option value="{{y.value}}" class="options">
@@ -141,5 +161,5 @@
             </div>
         </div>
     </div>
-    
+
 </div>
