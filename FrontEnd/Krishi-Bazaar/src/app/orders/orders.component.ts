@@ -38,8 +38,8 @@ export class OrdersComponent implements OnInit {
   };
 
   urls = {
-    "orders": "http://localhost:5001/v1/consumer/orders",
-    'item': "http://localhost:5001/v1/products/categories/items/item",
+    "orders": "https://temp-name-1.herokuapp.com/v1/consumer/orders",
+    'item': "https://temp-name-1.herokuapp.com/v1/products/categories/items/item",
   };
 
   constructor(private httpClient: HttpClient, private router: Router, private as: AuthService, private cs: CartService,private cs_: CookieService) { }

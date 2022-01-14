@@ -25,12 +25,12 @@ export class SigninComponent implements OnInit {
   signupdata: any;
   error500: boolean = false;
 
-  url = "http://localhost:5001/v1/users/login";
+  url = "https://temp-name-1.herokuapp.com/v1/users/login";
 
   urls = {
-    'register': "http://localhost:5001/v1/users/registration",
-    'state': "http://localhost:5001/v1/location/states",
-    'district': "http://localhost:5001/v1/location/states/districts"
+    'register': "https://temp-name-1.herokuapp.com/v1/users/registration",
+    'state': "https://temp-name-1.herokuapp.com/v1/location/states",
+    'district': "https://temp-name-1.herokuapp.com/v1/location/states/districts"
   }
 
 
@@ -78,17 +78,17 @@ export class SigninComponent implements OnInit {
     private as: AuthService, private cs: CookieService, private ac: AppComponent, private win: WindowService, private ath: AngularFireAuth) { }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha',
-        {
-          'size': 'invisible'
-        }
-      );
+    // setTimeout(() => {
+    //   this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha',
+    //     {
+    //       'size': 'invisible'
+    //     }
+    //   );
 
-      this.windowRef.recaptchaVerifier.render().then((widgetId: any) => {
-        this.windowRef.recaptchaWidgetId = widgetId;
-      });
-    }, 2000);
+    //   this.windowRef.recaptchaVerifier.render().then((widgetId: any) => {
+    //     this.windowRef.recaptchaWidgetId = widgetId;
+    //   });
+    // }, 2000);
     this.as.getUser().subscribe(res => {
       this.user = res.payload;
       console.log(this.user);
@@ -202,52 +202,7 @@ export class SigninComponent implements OnInit {
     this.state = false;
     this.pincode = false;
 
-    if (this.formreg.get("name")?.value == "" || !(/^[a-zA-Z][a-zA-Z ]+$/.test(this.formreg.get("name")?.value))) {
-      this.signupdata[0].error = true;
-      this.signupdata[0].errormsg = "Invalid name. A name starts with and contains only Alphabets."
-      flag = 'false';
-    }
-
-    if (this.formreg.get("email")?.value == "" || !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(this.formreg.get("email")?.value))) {
-      this.signupdata[1].error = true;
-      this.signupdata[1].errormsg = "Invalid email. Email is badly formatted."
-      flag = 'false';
-    }
-
-    if (this.formreg.get("phone")?.value == "" || !(/^\d{10}$/.test(this.formreg.get("phone")?.value))) {
-      this.signupdata[2].error = true;
-      this.signupdata[2].errormsg = "Invalid Phone number. Please enter a 10 digit valid phone number."
-      flag = 'false';
-    }
-
-
-
-    if (this.formreg.get("password")?.value == "" || !(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(this.formreg.get("password")?.value))) {
-      this.signupdata[3].error = true;
-      this.signupdata[3].errormsg = "A strong 8 character password must contain at least:[a-z],[A-Z],[0-9],a special character";
-      flag = 'false';
-    }
-
-    if (this.formreg.get("confirmpassword")?.value != this.formreg.get("password")?.value || this.formreg.get("confirmpassword")?.value == "") {
-      this.signupdata[4].error = true;
-      if (this.formreg.get("confirmpassword")?.value == "") { this.messageconfirmpassword = "Confirm password field is empty"; }
-      else { this.signupdata[4].errormsg = "Confirm password mismatch"; }
-      flag = 'false';
-    }
-
-    if (this.formreg.get("address")?.value == "" || !(/^[a-zA-Za-zA-Z0-9()\-,. ]+$/.test(this.formreg.get("address")?.value))) {
-      this.signupdata[6].error = true;
-      this.signupdata[6].errormsg = "Invalid Address. Address is badly formatted."
-      flag = 'false';
-    }
-
-    if (this.formreg.get("pincode")?.value == "" || !(/^\d{6}$/.test(this.formreg.get("pincode")?.value))) {
-      this.signupdata[7].error = true;
-      this.signupdata[7].errormsg = "Invalid Pincode. Pincode is badly formatted."
-      flag = 'false';
-    }
-
-    if (flag == 'true') {
+    if (!this.formreg.invalid) {
       console.log("success");
       return true;
     }
@@ -336,7 +291,36 @@ export class SigninComponent implements OnInit {
   submitreg() {
 
     if (!this.validatereg()) return;
-    this.sendLoginCode();
+    let data = this.formreg.value;
+          delete data.confirmpassword;
+          data.role = this.selectedRole; //selectedRole
+          data.state = this.selectedState;
+          data.district = this.selectedDistrict;
+
+          this.httpClient.post<any>(this.urls.register, data).subscribe(
+            (res) => {
+              console.log(res.message);
+              if (res.statusCode != 0) {
+                this.error = true;
+                this.errormessage = res.message;
+                if (this.errormessage == "Please verify email") this.resendemail = true;
+              }
+              else {
+                this.router.navigate(['/signin']);
+              }
+
+            },
+            (err) => {
+              console.log(err);
+              if (err.status == 0 || err.status == 500) {
+                this.error500 = true;
+              }
+              else {
+                this.error = true;
+                this.errormessage = "Unable to register. Please contact customer service or try again later.";
+              }
+            }
+          );
 
   }
 

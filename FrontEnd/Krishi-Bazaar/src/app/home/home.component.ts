@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   user: any;  
   
   urls = {
-    'profile': "http://localhost:5001/v1/users/profile",
+    'profile': "https://temp-name-1.herokuapp.com/v1/users/profile",
   }
 
   // role: string = "";

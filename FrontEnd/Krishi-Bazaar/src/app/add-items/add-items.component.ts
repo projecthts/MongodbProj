@@ -272,9 +272,9 @@ export class AddItemsComponent implements OnInit {
   url = "";
 
   urls = {
-    'state': "http://localhost:5001/v1/location/states",
-    'district': "http://localhost:5001/v1/location/states/districts",
-    'address': "http://localhost:5001/v1/users/address",
+    'state': "https://temp-name-1.herokuapp.com/v1/location/states",
+    'district': "https://temp-name-1.herokuapp.com/v1/location/states/districts",
+    'address': "https://temp-name-1.herokuapp.com/v1/users/address",
   }
 
   states: any;
@@ -812,7 +812,7 @@ export class AddItemsComponent implements OnInit {
     let serializedForm = JSON.stringify(formObj);
     console.log('Submit Button clicked: ' + serializedForm);
 
-    this.httpClient.post<any>("http://localhost:5001/v1/products/product", formObj).subscribe(
+    this.httpClient.post<any>("https://temp-name-1.herokuapp.com/v1/products/product", formObj).subscribe(
       (res) => {
 
         if (res.statusCode == 0) {

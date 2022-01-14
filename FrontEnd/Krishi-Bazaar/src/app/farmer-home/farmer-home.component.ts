@@ -21,8 +21,8 @@ export class FarmerHomeComponent implements OnInit {
   user: any;
   urls = {
     // TODO: Provide only one url and uid param to api call
-    'filter': 'http://localhost:5001/v1/products/categories/items/filteritems',
-    'default': 'http://localhost:5001/v1/products/categories/items/items',
+    'filter': 'https://temp-name-1.herokuapp.com/v1/products/categories/items/filteritems',
+    'default': 'https://temp-name-1.herokuapp.com/v1/products/categories/items/items',
   };
 
   categories: Node[] = [];

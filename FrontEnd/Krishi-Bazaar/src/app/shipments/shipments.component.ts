@@ -27,9 +27,9 @@ export class ShipmentsComponent implements OnInit {
   ship: boolean = true;
 
   urls = {
-    "orders": "http://localhost:5001/v1/consumer/orders",
-    "item": "http://localhost:5001/v1/products/categories/items/item",
-    "shipment": "http://localhost:5001/v1/farmers/farmer/shipments",
+    "orders": "https://temp-name-1.herokuapp.com/v1/consumer/orders",
+    "item": "https://temp-name-1.herokuapp.com/v1/products/categories/items/item",
+    "shipment": "https://temp-name-1.herokuapp.com/v1/farmers/farmer/shipments",
   }
   constructor(private httpClient: HttpClient, private router: Router, private as: AuthService, private cs: CartService, private cs_: CookieService) { }
 
