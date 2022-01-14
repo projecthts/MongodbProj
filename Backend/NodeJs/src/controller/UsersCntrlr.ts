@@ -185,9 +185,9 @@ class UsersCntrlr {
   public static getUser(req: express.Request, res: express.Response): void {
     
     console.log('getUser -', req.url);
-    console.log(req.sessionID);
-    console.log(req.user);
-    console.log(req.headers);
+    // console.log(req.sessionID);
+    // console.log(req.user);
+    // console.log(req.headers);
     if(req.user) res.status(200).send({ "statusCode": 0, "message": "", "payload": req.user});
     else res.status(200).send({ "statusCode": 0, "message": "", "payload": "Unauthorized"});
     

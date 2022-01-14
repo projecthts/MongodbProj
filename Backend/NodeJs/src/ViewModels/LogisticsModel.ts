@@ -274,6 +274,7 @@ export class LogisticsModel {
         })
     }
     public static addPickup(body: I5_1): Promise<IPostResponse> {
+        console.log(body);
         return new Promise((resolve, reject) => {
             this.findPickup(body.ReqId).then(res => {
                 if (res) {
@@ -304,18 +305,22 @@ export class LogisticsModel {
                         pickup_["pickupaddress"] = res.pickupaddress;
                         let pickup = new logisticspickup(body);
                         pickup.save().then(res => {
+                            
                             resolve({ statusCode: 0, message: "Logistics Pickup Updated" });
                         })
                             .catch(e => {
+                                console.log(e)
                                 reject({ statusCode: 2, message: e });
                             })
                     })
                         .catch(e => {
+                            console.log(e)
                             reject({ statusCode: 2, message: e });
                         })
                 }
             })
                 .catch(e => {
+                    console.log(e)
                     reject({ statusCode: 2, message: e });
                 })
 
