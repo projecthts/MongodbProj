@@ -25,12 +25,12 @@ export class SigninComponent implements OnInit {
   signupdata: any;
   error500: boolean = false;
 
-  url = "https://temp-name-1.herokuapp.com/v1/users/login";
+  url = "http://localhost:5001/v1/users/login";
 
   urls = {
-    'register': "https://temp-name-1.herokuapp.com/v1/users/registration",
-    'state': "https://temp-name-1.herokuapp.com/v1/location/states",
-    'district': "https://temp-name-1.herokuapp.com/v1/location/states/districts"
+    'register': "http://localhost:5001/v1/users/registration",
+    'state': "http://localhost:5001/v1/location/states",
+    'district': "http://localhost:5001/v1/location/states/districts"
   }
 
 
@@ -170,8 +170,8 @@ export class SigninComponent implements OnInit {
     role: new FormControl('farmer',[Validators.required]),
     confirmpassword: new FormControl('', [Validators.required]),
     address: new FormControl('',[Validators.required]),
-    district: new FormControl('',[Validators.required]),
-    state: new FormControl('',[Validators.required]),
+    district: new FormControl(''),
+    state: new FormControl(''),
     pincode: new FormControl('',[Validators.required]),
   }, { validators: this.checkPasswords })
 
@@ -190,18 +190,7 @@ export class SigninComponent implements OnInit {
   }
 
   validatereg() {
-    var flag = 'true';
-    this.error = false;
-    this.name = false;
-    this.email = false;
-    this.phone = false;
-    this.password = false;
-    this.confirmpassword = false;
-    this.address = false;
-    this.district = false;
-    this.state = false;
-    this.pincode = false;
-
+    console.log(this.formreg.valid);
     if (!this.formreg.invalid) {
       console.log("success");
       return true;
@@ -268,35 +257,36 @@ export class SigninComponent implements OnInit {
     );
   }
 
-  sendLoginCode() {
+  // sendLoginCode() {
 
-    const appVerifier = this.windowRef.recaptchaVerifier;
+  //   const appVerifier = this.windowRef.recaptchaVerifier;
 
-    const num = "+91" + this.formreg.get("phone")?.value;
+  //   const num = "+91" + this.formreg.get("phone")?.value;
 
-    firebase.auth().signInWithPhoneNumber(num, appVerifier)
-      .then(result => {
+  //   firebase.auth().signInWithPhoneNumber(num, appVerifier)
+  //     .then(result => {
 
-        this.windowRef.confirmationResult = result;
+  //       this.windowRef.confirmationResult = result;
 
-      })
-      .catch(error => {
-        console.log(error);
-        this.error = true;
-        this.errormessage = "Cannot send verification code. Please try again later.";
-      });
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //       this.error = true;
+  //       this.errormessage = "Cannot send verification code. Please try again later.";
+  //     });
 
-  }
+  // }
 
   submitreg() {
 
     if (!this.validatereg()) return;
     let data = this.formreg.value;
           delete data.confirmpassword;
-          data.role = this.selectedRole; //selectedRole
-          data.state = this.selectedState;
-          data.district = this.selectedDistrict;
+          data.role = this.signupdata[5].value; //selectedRole
+          data.state = this.signupdata[8].value;
+          data.district = this.signupdata[9].value;
 
+          console.log(data);
           this.httpClient.post<any>(this.urls.register, data).subscribe(
             (res) => {
               console.log(res.message);
@@ -306,7 +296,7 @@ export class SigninComponent implements OnInit {
                 if (this.errormessage == "Please verify email") this.resendemail = true;
               }
               else {
-                this.router.navigate(['/signin']);
+                this.login = true;
               }
 
             },
@@ -324,62 +314,62 @@ export class SigninComponent implements OnInit {
 
   }
 
-  returnConfirmationCode = (): Promise<firebase.auth.UserCredential> => {
-    console.log(this.phoneotp.get("code")?.value);
-    return this.windowRef.confirmationResult.confirm(this.phoneotp.get("code")?.value.toString());
-  }
+  // returnConfirmationCode = (): Promise<firebase.auth.UserCredential> => {
+  //   console.log(this.phoneotp.get("code")?.value);
+  //   return this.windowRef.confirmationResult.confirm(this.phoneotp.get("code")?.value.toString());
+  // }
 
-  verifyLoginCode() {
-    this.returnConfirmationCode()
-      .then(result => {
+  // verifyLoginCode() {
+  //   this.returnConfirmationCode()
+  //     .then(result => {
 
-        this.phuser = result.user;
-        firebase.auth().currentUser?.delete().then(val => {
-          this.phoneVerified = true;
-          let data = this.formreg.value;
-          delete data.confirmpassword;
-          data.role = this.selectedRole; //selectedRole
-          data.state = this.selectedState;
-          data.district = this.selectedDistrict;
+  //       this.phuser = result.user;
+  //       firebase.auth().currentUser?.delete().then(val => {
+  //         this.phoneVerified = true;
+  //         let data = this.formreg.value;
+  //         delete data.confirmpassword;
+  //         data.role = this.selectedRole; //selectedRole
+  //         data.state = this.selectedState;
+  //         data.district = this.selectedDistrict;
 
-          this.httpClient.post<any>(this.urls.register, data).subscribe(
-            (res) => {
-              console.log(res.message);
-              if (res.statusCode != 0) {
-                this.error = true;
-                this.errormessage = res.message;
-                if (this.errormessage == "Please verify email") this.resendemail = true;
-              }
-              else {
-                this.router.navigate(['/signin']);
-              }
+  //         this.httpClient.post<any>(this.urls.register, data).subscribe(
+  //           (res) => {
+  //             console.log(res.message);
+  //             if (res.statusCode != 0) {
+  //               this.error = true;
+  //               this.errormessage = res.message;
+  //               if (this.errormessage == "Please verify email") this.resendemail = true;
+  //             }
+  //             else {
+  //               this.router.navigate(['/signin']);
+  //             }
 
-            },
-            (err) => {
-              console.log(err);
-              if (err.status == 0 || err.status == 500) {
-                this.error500 = true;
-              }
-              else {
-                this.error = true;
-                this.errormessage = "Unable to register. Please contact customer service or try again later.";
-              }
-            }
-          );
+  //           },
+  //           (err) => {
+  //             console.log(err);
+  //             if (err.status == 0 || err.status == 500) {
+  //               this.error500 = true;
+  //             }
+  //             else {
+  //               this.error = true;
+  //               this.errormessage = "Unable to register. Please contact customer service or try again later.";
+  //             }
+  //           }
+  //         );
 
-        })
-          .catch(e => {
-            this.error = true;
-            this.errormessage = "Unable to register. Please try again later.";
-          })
+  //       })
+  //         .catch(e => {
+  //           this.error = true;
+  //           this.errormessage = "Unable to register. Please try again later.";
+  //         })
 
-      })
-      .catch(error => {
-        console.log(error, "Incorrect code entered?")
-        this.error = true;
-        this.errormessage = "Incorrect code or code expired. Please try again"
-      });
-  }
+  //     })
+  //     .catch(error => {
+  //       console.log(error, "Incorrect code entered?")
+  //       this.error = true;
+  //       this.errormessage = "Incorrect code or code expired. Please try again"
+  //     });
+  // }
 
   submitlogin() {
     let data = this.formlogin.value;

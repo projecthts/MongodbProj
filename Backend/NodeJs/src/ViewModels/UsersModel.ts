@@ -39,7 +39,7 @@ export class UsersModel {
       .catch(e => { if(e != "Early return") return done(e); })
   }
 
-  public static registration(body: I0_2): Promise<IPostResponse> {
+  public static registrationCopy(body: I0_2): Promise<IPostResponse> {
     return new Promise((resolve, reject) => {
       DatabaseOperations.FindOneOp(users, { 'email': body.email })
         .then((val) => { if (val) return resolve({ "statusCode": 1, "message": "User with the given username already exists" }); else { return DatabaseOperations.FindOneOp(tempusers, { 'email': body.email }) } })
@@ -49,7 +49,7 @@ export class UsersModel {
           else return UsersModel.hashpassword(String(body.password)); 
         })
         .then((hashed) => { body.password = String(hashed); return DatabaseOperations.SaveOp(tempusers, body) })
-        .then((val) => { return EmailserviceModel.sendemail(String(body.email), "Please verify your email.", "Hi user! \n Welcome to Krishi Bazaar \n Please click on the link below to veryfiy your email.", "http://localhost:4200/verifyemail", keys.serverkeys.Secretemail) })
+        .then((val) => { return EmailserviceModel.sendemail(String(body.email), "Please verify your email.", "Hi user! \n Welcome to Krishi Bazaar \n Please click on the link below to veryfiy your email.", "https://temp-name-1.herokuapp.com//verifyemail", keys.serverkeys.Secretemail) })
         .then((val) => { resolve({ "statusCode": 0, "message": "Saved!" }); })
         .catch(e => {
           reject({ "statusCode": 2, "message": e });
@@ -231,7 +231,7 @@ export class UsersModel {
   */
 
 
-  public static registrationCopy(body: I0_2): Promise<IPostResponse> {
+  public static registration(body: I0_2): Promise<IPostResponse> {
     return new Promise((resolve, reject) => {
       // Check if user has already registered
       UsersModel.userenabled(String(body.email)).then(val => {
@@ -250,7 +250,7 @@ export class UsersModel {
                 // Store user data in temporary account collection
                 user.save().then(val => {
                   //send verification mail
-                  EmailserviceModel.sendemail(String(body.email), "Please verify your email.", "Hi user! \n Welcome to Krishi Bazaar \n Please click on the link below to veryfiy your email.", "http://localhost:4200/verifyemail", keys.serverkeys.Secretemail)
+                  EmailserviceModel.sendemail(String(body.email), "Please verify your email.", "Hi user! \n Welcome to Krishi Bazaar \n Please click on the link below to veryfiy your email.", "https://temp-name-1.herokuapp.com//verifyemail", keys.serverkeys.Secretemail)
                     .then(info => {
                       resolve({ "statusCode": 0, "message": "Saved!" });
                     })

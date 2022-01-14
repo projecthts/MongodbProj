@@ -31,15 +31,15 @@ export class AuthService {
 
   getUser(){
      console.log(`connect.sid=${this.cs.get("connect.sid")}`);
-    return this.httpClient.get<any>("https://temp-name-1.herokuapp.com/v1/users/user", {withCredentials: true});
+    return this.httpClient.get<any>("http://localhost:5001/v1/users/user", {withCredentials: true});
   }
 
   logout(){
-    return this.httpClient.post<any>("https://temp-name-1.herokuapp.com/v1/users/logout", {}, {withCredentials: true});
+    return this.httpClient.post<any>("http://localhost:5001/v1/users/logout", {}, {withCredentials: true});
   }
 
   getProfile(uid:any){
-    return this.httpClient.get<any>("https://temp-name-1.herokuapp.com/v1/users/profile" + "?uid=" + uid);
+    return this.httpClient.get<any>("http://localhost:5001/v1/users/profile" + "?uid=" + uid);
   }
 
 }

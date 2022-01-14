@@ -23,8 +23,8 @@ export class ItemsComponent implements OnInit {
   user: any;
   generatejson: any[] = [];
   urls = {
-    'filter': "https://temp-name-1.herokuapp.com/v1/products/categories/items/filteritems",
-    'default': "https://temp-name-1.herokuapp.com/v1/products/categories/items/items",
+    'filter': "http://localhost:5001/v1/products/categories/items/filteritems",
+    'default': "http://localhost:5001/v1/products/categories/items/items",
   };
 
   errormessage: string = "";

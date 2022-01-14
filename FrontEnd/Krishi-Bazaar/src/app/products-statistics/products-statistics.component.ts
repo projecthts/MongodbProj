@@ -275,10 +275,10 @@ export class ProductsStatisticsComponent implements OnInit {
   url = "./assets/images/previewImage.jpg";
 
   urls = {
-    'state': "https://temp-name-1.herokuapp.com/v1/location/states",
-    'district': "https://temp-name-1.herokuapp.com/v1/location/states/districts",
-    'address': "https://temp-name-1.herokuapp.com/v1/users/address",
-    'item': 'https://temp-name-1.herokuapp.com/v1/products/categories/items/item',
+    'state': "http://localhost:5001/v1/location/states",
+    'district': "http://localhost:5001/v1/location/states/districts",
+    'address': "http://localhost:5001/v1/users/address",
+    'item': 'http://localhost:5001/v1/products/categories/items/item',
   }
 
   states: any;
@@ -852,7 +852,7 @@ export class ProductsStatisticsComponent implements OnInit {
     let serializedForm = JSON.stringify(formObj);
     console.log('Submit Button clicked: ' + serializedForm);
 
-    this.httpClient.post<any>("https://temp-name-1.herokuapp.com/v1/products/product", formObj).subscribe(
+    this.httpClient.post<any>("http://localhost:5001/v1/products/product", formObj).subscribe(
       (res) => {
 
         if (res.statusCode == 0) {

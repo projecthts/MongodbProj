@@ -27,7 +27,7 @@ export class PaymentComponent implements OnInit {
   }
 
   urls = {
-    "ongoingorder": "https://temp-name-1.herokuapp.com/v1/consumer/order"
+    "ongoingorder": "http://localhost:5001/v1/consumer/order"
   };
 
   //itemsList:any;

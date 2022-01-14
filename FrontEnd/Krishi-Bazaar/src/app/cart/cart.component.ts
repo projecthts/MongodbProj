@@ -43,9 +43,9 @@ export class CartComponent implements OnInit {
   errormessage: string = "";
 
   urls = {
-    'cart': "https://temp-name-1.herokuapp.com/v1/consumer/cart",
-    'item': "https://temp-name-1.herokuapp.com/v1/products/categories/items/item",
-    'deleteitem': "https://temp-name-1.herokuapp.com/v1/consumer/cart/item",
+    'cart': "http://localhost:5001/v1/consumer/cart",
+    'item': "http://localhost:5001/v1/products/categories/items/item",
+    'deleteitem': "http://localhost:5001/v1/consumer/cart/item",
   };
 
   ngOnInit(): void {

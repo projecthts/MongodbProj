@@ -13,7 +13,7 @@ export class ResetPasswordComponent implements OnInit {
   authError: any;
   user: any;
 
-  url = "https://temp-name-1.herokuapp.com/v1/users/changepassword"
+  url = "http://localhost:5001/v1/users/changepassword"
   error: boolean = false;
   password: boolean = false;
   messagepassword: string = "";

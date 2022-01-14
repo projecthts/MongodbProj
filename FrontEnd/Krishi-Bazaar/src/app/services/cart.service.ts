@@ -77,15 +77,15 @@ export class CartService {
   }
 
   getCart(uid: any){
-    return this.httpClient.get<any>("https://temp-name-1.herokuapp.com/v1/consumer/cart" + "?uid=" + uid);
+    return this.httpClient.get<any>("http://localhost:5001/v1/consumer/cart" + "?uid=" + uid);
   }
 
   getItem(prodId: any){
-    return this.httpClient.get<any>("https://temp-name-1.herokuapp.com/v1/products/categories/items/item"+ "?id=" + prodId);
+    return this.httpClient.get<any>("http://localhost:5001/v1/products/categories/items/item"+ "?id=" + prodId);
   }
 
   postCart(data: any){
-    return this.httpClient.post<any>("https://temp-name-1.herokuapp.com/v1/consumer/cart", data)
+    return this.httpClient.post<any>("http://localhost:5001/v1/consumer/cart", data)
   }
 
 
